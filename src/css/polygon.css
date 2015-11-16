@@ -1,3 +1,6 @@
 .polygon {
-  fill: red;
+  stroke: red;
+  stroke-width: 1;
+  fill: none;
+  pointer-events: all;
 }
