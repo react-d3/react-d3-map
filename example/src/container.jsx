@@ -10,9 +10,9 @@ var css= require('./css/polygon.css');
 
 // Example
 (function() {
-  var width = 500;
-  var height = 500;
-  var scale = (1 << 18) / 2 / Math.PI;
+  var width = 1000;
+  var height = 800;
+  var scale = (1 << 18);
   var center = [-73.95, 40.7];
   var data = {geometry: {coordinates: [[[-74.0479, 40.8820], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{}, type: "Feature"};
 

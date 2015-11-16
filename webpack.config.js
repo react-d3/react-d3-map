@@ -18,7 +18,7 @@ module.exports = [{
   },
 
   output: {
-    path: path.join(__dirname, './example/dist'),
+    path: ENV ? path.join(__dirname, './example/min'): path.join(__dirname, './example/dist'),
     filename: ENV ? '[name].min.js': '[name].js'
   },
 

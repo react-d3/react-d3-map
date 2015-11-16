@@ -11,7 +11,7 @@ import {
   projection as projectionFunc,
   geoPath,
   tileFunc,
-  Popup
+  ZoomControl
 } from 'react-d3-map-core';
 
 import {
@@ -27,54 +27,64 @@ export default class Map extends Component {
     super(props);
 
     this.state = {
-      xPopup: null,
-      yPopup: null,
-      contentPopup: null,
       zoomTranslate: null,
-      zoomScale: null
+      scale: this.props.scale,
+      times: 1
     };
   }
 
   static defaultProps = CommonProps
 
-  onClick(dom, d, x, y) {
+  onZoom(zoomScale, zoomTranslate) {
+    var times = this.state.times;
+
     this.setState({
-      xPopup: x,
-      yPopup: y,
-      contentPopup: d.properties.name
+      scale: zoomScale * times,
+      zoomTranslate: zoomTranslate
     })
   }
 
-  onZoom(zoomScale, zoomTranslate) {
+  zoomIn() {
+    var times = this.state.times;
+
     this.setState({
-      zoomScale: zoomScale,
-      zoomTranslate: zoomTranslate
+      times: times * 2,
+      scale: this.state.scale * 2
+    })
+  }
+
+  zoomOut() {
+    var times = this.state.times;
+
+    this.setState({
+      times: times / 2,
+      scale: this.state.scale / 2
     })
   }
 
   render() {
     const {
-      zoomScale,
+      scale,
       zoomTranslate
     } = this.state;
 
     const {
       width,
       height,
-      scale,
       center,
       projection,
       data
     } = this.props;
 
-    var onClick = this.onClick.bind(this);
     var onZoom = this.onZoom.bind(this);
+    var zoomIn = this.zoomIn.bind(this);
+    var zoomOut = this.zoomOut.bind(this);
 
     var translate = [width / 2, height / 2] || this.props.translate;
 
     var proj = projectionFunc({
       projection: projection,
-      scale: zoomScale? (zoomScale / 2 / Math.PI): scale,
+      scale: scale / 2 / Math.PI,
       translate: zoomTranslate || translate,
       center: center
     });
@@ -87,30 +97,31 @@ export default class Map extends Component {
       size: ([width, height])
     });
 
-    var popup = (<Popup
-      {...this.state}
-    />);
+    var styleContainer = {
+      position: 'relative'
+    }
 
     return (
-      <div>
+      <div style= {styleContainer}>
         <Chart
           width= {width}
           height= {height}
           projection = {proj}
           onZoom= {onZoom}
           center= {center}
-          {...this.state}
         >
           <Vector
             tiles= {tiles}
             projection= {proj}
             geoPath= {geo}
-            onClick= {onClick}
             data= {data}
             {...this.state}
           />
         </Chart>
-        {popup}
+        <ZoomControl
+          zoomInClick= {zoomIn}
+          zoomOutClick= {zoomOut}
+        />
       </div>
     )
 

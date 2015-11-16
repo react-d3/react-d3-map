@@ -7,9 +7,12 @@ import {
 } from 'react';
 
 import {
-  Tile,
-  Polygon
+  Tile
 } from 'react-d3-map-core';
+
+import {
+  default as PolygonGroup
+} from './polygonGroup'
 
 export default class Vector extends Component {
   constructor(props) {
@@ -21,19 +24,20 @@ export default class Vector extends Component {
       tiles,
       data,
       geoPath,
-      onClick
+      projection
     } = this.props
+
+    // seperate data to polygon, line, point and sent to different groups
 
     return (
       <g>
         <Tile
           tiles= {tiles}
         />
-        <Polygon
+        <PolygonGroup
           data= {data}
           geoPath= {geoPath}
-          onClick= {onClick}
-          {...this.props}
+          projection= {projection}
         />
       </g>
     )

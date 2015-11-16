@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "d3": "^3.5.6",
-    "react-d3-map-core": "^0.8.2",
+    "react-d3-map-core": "^0.9.2",
     "react-faux-dom": "^2.1.0"
   },
   "jest": {
