@@ -14,7 +14,8 @@ module.exports = [{
   name: 'react-d3-map',
   devtool: ENV ? "source-map": '',
   entry: {
-    container: './example/src/container.jsx'
+    container: './example/src/container.jsx',
+    multipolygon: './example/src/multipolygon.jsx'
   },
 
   output: {

@@ -25,11 +25,12 @@ export default class PolygonGroup extends Component {
 
     var polygons;
 
-    if(data)
+    if(data && data !== []) {
       if(Array.isArray(data)) {
-        polygons = data.map((d) => {
+        polygons = data.map((d, i) => {
           return (
             <PolygonPopup
+              key= {i}
               data= {d}
               geoPath= {geoPath}
               projection= {projection}
@@ -43,7 +44,7 @@ export default class PolygonGroup extends Component {
           projection= {projection}
         />)
       }
-
+    }
 
     return (
       <g>
