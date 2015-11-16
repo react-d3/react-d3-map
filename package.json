@@ -1,0 +1,42 @@
+{
+  "name": "react-d3-map",
+  "version": "0.1.0",
+  "description": "react-d3 interactive map",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "rm -rf ./lib && babel -w --stage 0 src --out-dir lib"
+  },
+  "author": "ElixirDoc team",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "babel-core": "^5.8.24",
+    "babel-jest": "^5.3.0",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.18.0",
+    "dsv-loader": "^1.0.0",
+    "jest-cli": "^0.5.8",
+    "json-loader": "^0.5.3",
+    "jsx-loader": "^0.13.2",
+    "react-addons-test-utils": "^0.14.0",
+    "react-hot-loader": "^1.3.0",
+    "style-loader": "^0.12.4",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.11.0",
+    "topojson": "^1.6.19",
+    "react-dom": "^0.14.0"
+  },
+  "peerDepencies": {
+    "react": "^0.14.2"
+  },
+  "dependencies": {
+    "d3": "^3.5.6",
+    "react-d3-map-core": "^0.8.2",
+    "react-faux-dom": "^2.1.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "./node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "./node_modules/react"
+    ]
+  }
+}
