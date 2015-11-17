@@ -78,7 +78,8 @@ export default class Vector extends Component {
       tiles,
       data,
       geoPath,
-      projection
+      projection,
+      popupContent
     } = this.props
 
     const {
@@ -96,16 +97,19 @@ export default class Vector extends Component {
           data= {polygonData}
           geoPath= {geoPath}
           projection= {projection}
+          popupContent= {popupContent}
         />
         <LinePopupGroup
           data= {lineData}
           geoPath= {geoPath}
           projection= {projection}
+          popupContent= {popupContent}
         />
         <MarkerPopupGroup
           data= {pointData}
           geoPath= {geoPath}
           projection= {projection}
+          popupContent= {popupContent}
         />
       </g>
     )

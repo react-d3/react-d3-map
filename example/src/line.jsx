@@ -14,10 +14,12 @@ var css= require('./css/polygon.css');
   var scale = 1 << 22;
   var scaleExtent = [1 << 20, 1 << 24]
   var center = [-122.486052, 37.830348];
-
+  var popupContent = function(d) { return d.properties.text; }
   var data = {
           "type": "Feature",
-          "properties": {},
+          "properties": {
+            "text": "this is a LineString"
+          },
           "geometry": {
               "type": "LineString",
               "coordinates": [
@@ -55,6 +57,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-line')
   )

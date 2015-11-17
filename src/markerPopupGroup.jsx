@@ -45,7 +45,8 @@ export default class PointPopupGroup extends Component {
       // add a popup
       var newPopup = showPopup.set(id, Map({
         xPopup: d.geometry.coordinates[0],
-        yPopup: d.geometry.coordinates[1]
+        yPopup: d.geometry.coordinates[1],
+        data: d
       }));
     }
 
@@ -79,12 +80,11 @@ export default class PointPopupGroup extends Component {
     const {
       data,
       geoPath,
-      projection
+      projection,
+      popupContent
     } = this.props;
 
     var onClick = this._onClick.bind(this)
-
-    var content = "React-d3-map is awesome!";
 
     var popup;
 
@@ -92,8 +92,10 @@ export default class PointPopupGroup extends Component {
       popup = showPopup.keySeq().toArray().map((d, i) => {
         var xPopup = showPopup.get(d).get('xPopup');
         var yPopup = showPopup.get(d).get('yPopup');
+        var popupData = showPopup.get(d).get('data');
 
         var point = projection([xPopup, yPopup])
+        var content = popupContent(popupData);
 
         var onCloseClick = this._onCloseClick.bind(this, d)
 

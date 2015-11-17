@@ -73,7 +73,8 @@ export default class Map extends Component {
       height,
       center,
       projection,
-      data
+      data,
+      popupContent
     } = this.props;
 
     var onZoom = this.onZoom.bind(this);
@@ -116,6 +117,7 @@ export default class Map extends Component {
             projection= {proj}
             geoPath= {geo}
             data= {data}
+            popupContent= {popupContent}
             {...this.state}
           />
         </Chart>

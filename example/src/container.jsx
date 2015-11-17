@@ -14,7 +14,8 @@ var css= require('./css/polygon.css');
   var height = 800;
   var scale = (1 << 18);
   var center = [-73.95, 40.7];
-  var data = {geometry: {coordinates: [[[-74.0479, 40.8820], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{}, type: "Feature"};
+  var data = {geometry: {coordinates: [[[-74.0479, 40.8820], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{"text": "hi, this is a polygon!"}, type: "Feature"};
+  var popupContent = function(d) { return d.properties.text; }
 
   ReactDOM.render(
     <Map
@@ -23,6 +24,7 @@ var css= require('./css/polygon.css');
       scale= {scale}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-container')
   )
