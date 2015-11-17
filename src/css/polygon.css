@@ -4,3 +4,9 @@
   fill: none;
   pointer-events: all;
 }
+
+.mesh {
+  stroke: red;
+  stroke-width: 3;
+  pointer-events: all;
+}

@@ -10,6 +10,10 @@ examples = [
   {
     "link": "point",
     "title": "Point"
+  },
+  {
+    "link": "line",
+    "title": "Line"
   }
 ];
 
