@@ -4,23 +4,27 @@ import {
   default as React,
   Component,
   PropTypes
-} from 'react';
+} from 'react'
 
 import {
-  default as PolygonPopup
-} from './components/polygonPopup'
+  Polygon
+} from 'react-d3-map-core';
 
 export default class PolygonGroup extends Component {
-  constructor(props) {
-    super(props);
+  shouldComponentUpdate(nextProps, nextState) {
+    if(nextProps.showPopup.size
+      !== this.props.showPopup.size) {
+      return false;
+    }else {
+      return true;
+    }
   }
 
   render() {
-
     const {
       data,
       geoPath,
-      projection
+      onClick
     } = this.props;
 
     var polygons;
@@ -29,19 +33,21 @@ export default class PolygonGroup extends Component {
       if(Array.isArray(data)) {
         polygons = data.map((d, i) => {
           return (
-            <PolygonPopup
+            <Polygon
+              id= {d.properties.react_d3_map__id}
               key= {i}
               data= {d}
               geoPath= {geoPath}
-              projection= {projection}
+              onClick= {onClick}
             />
           )
         })
       }else {
-        polygons = (<PolygonPopup
+        polygons = (<Polygon
+          id= {d.properties.react_d3_map__id}
           data= {data}
           geoPath= {geoPath}
-          projection= {projection}
+          onClick= {onClick}
         />)
       }
     }

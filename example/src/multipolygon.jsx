@@ -16,8 +16,6 @@ var css= require('./css/polygon.css');
   var center = [-100.95, 40.7];
   var data = require('json!../data/states.json');
 
-  console.log(data)
-
   ReactDOM.render(
     <Map
       width= {width}

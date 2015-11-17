@@ -11,23 +11,16 @@ import {
 } from 'react-d3-map-core';
 
 import {
-  default as PolygonGroup
-} from './polygonGroup'
+  default as PolygonPopupGroup
+} from './PolygonPopupGroup'
 
 export default class Vector extends Component {
   constructor(props) {
     super (props);
-  }
 
-  render() {
     const {
-      tiles,
-      data,
-      geoPath,
-      projection
-    } = this.props
-
-
+      data
+    } = this.props;
 
     // seperate data to polygon, line, point and sent to different groups
     if(data.type === 'FeatureCollection') {
@@ -37,6 +30,7 @@ export default class Vector extends Component {
 
       // loop through features
       data.features.forEach(function(d) {
+        d.properties.react_d3_map__id = Math.floor(Math.random() * 100000)
         if(d.geometry.type === 'Polygon' || d.geometry.type === 'MultiPolygon') {
           // polygon
           polygonData.push(d);
@@ -51,6 +45,7 @@ export default class Vector extends Component {
     }else if(data.type === 'Feature') {
       var polygonData, lineData, pointData;
 
+      data.properties.react_d3_map__id = Math.floor(Math.random() * 100000)
       if(data.geometry.type === 'Polygon' || data.geometry.type === 'MultiPolygon') {
         // polygon
         polygonData = data;
@@ -63,12 +58,34 @@ export default class Vector extends Component {
       }
     }
 
+    this.state = {
+      polygonData: polygonData,
+      lineData: lineData,
+      pointData: pointData
+    }
+  }
+
+  render() {
+    const {
+      tiles,
+      data,
+      geoPath,
+      projection
+    } = this.props
+
+    const {
+      polygonData,
+      lineData,
+      pointData
+    } = this.state;
+
+
     return (
       <g>
         <Tile
           tiles= {tiles}
         />
-        <PolygonGroup
+        <PolygonPopupGroup
           data= {polygonData}
           geoPath= {geoPath}
           projection= {projection}
