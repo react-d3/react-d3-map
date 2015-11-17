@@ -17,6 +17,7 @@ var css= require('./css/polygon.css');
   var center = [-5, 55.4];
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
+  var popupContent = function(d) { return d.properties.name; }
 
   ReactDOM.render(
     <Map
@@ -26,6 +27,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-point')
   )
