@@ -18,6 +18,10 @@ import {
   default as MarkerPopupGroup
 } from './MarkerPopupGroup'
 
+import {
+  default as LinePopupGroup
+} from './LinePopupGroup'
+
 export default class Vector extends Component {
   constructor(props) {
     super (props);
@@ -83,7 +87,6 @@ export default class Vector extends Component {
       pointData
     } = this.state;
 
-
     return (
       <g>
         <Tile
@@ -91,6 +94,11 @@ export default class Vector extends Component {
         />
         <PolygonPopupGroup
           data= {polygonData}
+          geoPath= {geoPath}
+          projection= {projection}
+        />
+        <LinePopupGroup
+          data= {lineData}
           geoPath= {geoPath}
           projection= {projection}
         />

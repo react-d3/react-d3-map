@@ -104,6 +104,7 @@ export default class Map extends Component {
     return (
       <div style= {styleContainer}>
         <Chart
+          {...this.props}
           width= {width}
           height= {height}
           projection = {proj}
