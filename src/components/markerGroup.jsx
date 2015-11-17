@@ -7,7 +7,7 @@ import {
 } from 'react'
 
 import {
-  Polygon
+  Marker
 } from 'react-d3-map-core';
 
 export default class PolygonGroup extends Component {
@@ -23,30 +23,32 @@ export default class PolygonGroup extends Component {
   render() {
     const {
       data,
-      geoPath,
+      projection,
       onClick
     } = this.props;
 
-    var polygons;
+    var markers;
 
     if(data && data !== []) {
       if(Array.isArray(data)) {
-        polygons = data.map((d, i) => {
+        markers = data.map((d, i) => {
           return (
-            <Polygon
+            <Marker
               id= {d.properties.react_d3_map__id}
               key= {i}
               data= {d}
-              geoPath= {geoPath}
+              x= {+projection(d.geometry.coordinates)[0]}
+              y= {+projection(d.geometry.coordinates)[1]}
               onClick= {onClick}
             />
           )
         })
       }else {
-        polygons = (<Polygon
+        markers = (<Marker
           id= {data.properties.react_d3_map__id}
           data= {data}
-          geoPath= {geoPath}
+          x= {+projection(data.geometry.coordinates)[0]}
+          y= {+projection(data.geometry.coordinates)[1]}
           onClick= {onClick}
         />)
       }
@@ -54,7 +56,7 @@ export default class PolygonGroup extends Component {
 
     return (
       <g>
-        {polygons}
+        {markers}
       </g>
     )
   }
