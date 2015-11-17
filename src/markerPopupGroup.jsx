@@ -56,7 +56,6 @@ export default class PointPopupGroup extends Component {
   }
 
   _onCloseClick(id) {
-
     var {
       showPopup
     } = this.state;
