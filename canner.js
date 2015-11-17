@@ -6,6 +6,10 @@ examples = [
   {
     "link": "multipolygon",
     "title": "MultiPolygon"
+  },
+  {
+    "link": "point",
+    "title": "Point"
   }
 ];
 
