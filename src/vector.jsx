@@ -7,8 +7,21 @@ import {
 } from 'react';
 
 import {
-  Tile
+  default as ReactDOM
+} from 'react-dom';
+
+import {
+  default as ReactFauxDOM
+} from 'react-faux-dom';
+
+import {
+  Tile,
+  tileFunc
 } from 'react-d3-map-core';
+
+import {
+  default as TileOverlay
+} from './components/tileOverlay'
 
 import {
   default as PolygonPopupGroup
@@ -73,13 +86,44 @@ export default class Vector extends Component {
     }
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    var tiles = ReactDOM.findDOMNode(this.refs.tiles)
+    var zoomStart = nextProps.zoomStart;
+    var nowZoomStart = this.props.zoomStart;
+
+    if(zoomStart === true && zoomStart !== nowZoomStart) {
+      this.overlay = tiles.children[0].cloneNode(true);
+    }else if (zoomStart === false) {
+      // clear overlay
+      var overlay = ReactDOM.findDOMNode(this.refs.tilesOverlay);
+      while (overlay.firstChild) {
+        overlay.removeChild(overlay.firstChild);
+      }
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    var overlay = ReactDOM.findDOMNode(this.refs.tilesOverlay)
+    var tiles = ReactDOM.findDOMNode(this.refs.tiles)
+    var prevZoomStart = prevProps.zoomStart;
+    var nowZoomStart = this.props.zoomStart;
+
+    if(nowZoomStart === true && prevZoomStart !== nowZoomStart) {
+      overlay.appendChild(this.overlay);
+    }
+  }
+
   render() {
     const {
+      width,
+      height,
       tiles,
       data,
       geoPath,
       projection,
-      popupContent
+      popupContent,
+      startTiles,
+      zoomStart
     } = this.props
 
     const {
@@ -88,11 +132,32 @@ export default class Vector extends Component {
       pointData
     } = this.state;
 
+    var transform = "scale(" + tiles.scale + ")translate(" + tiles.translate + ")";
+    var overlayStyle = {
+      willChange: 'transform'
+    }
+
+    var tilesMap;
+
+    if(!zoomStart) {
+      var tilesMap = <Tile
+        ref= 'tiles'
+        scale= {tiles.scale}
+        translate= {tiles.translate}
+        tiles= {tiles}
+        style= {overlayStyle}
+      />
+    }
+
     return (
       <g>
-        <Tile
-          tiles= {tiles}
-        />
+        {tilesMap}
+        <g
+          ref= 'tilesOverlay'
+          transform= {transform}
+          style= {overlayStyle}
+          >
+        </g>
         <PolygonPopupGroup
           data= {polygonData}
           geoPath= {geoPath}

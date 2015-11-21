@@ -29,7 +29,8 @@ export default class Map extends Component {
     this.state = {
       zoomTranslate: null,
       scale: this.props.scale,
-      times: 1
+      times: 1,
+      zoomStart: false
     };
   }
 
@@ -41,6 +42,18 @@ export default class Map extends Component {
     this.setState({
       scale: zoomScale * times,
       zoomTranslate: zoomTranslate
+    })
+  }
+
+  onZoomStart(zoomScale, zoomTranslate) {
+    this.setState({
+      zoomStart: true
+    })
+  }
+
+  onZoomEnd(zoomScale, zoomTranslate) {
+    this.setState({
+      zoomStart: false
     })
   }
 
@@ -80,6 +93,8 @@ export default class Map extends Component {
     var onZoom = this.onZoom.bind(this);
     var zoomIn = this.zoomIn.bind(this);
     var zoomOut = this.zoomOut.bind(this);
+    var onZoomStart = this.onZoomStart.bind(this);
+    var onZoomEnd = this.onZoomEnd.bind(this);
 
     var translate = [width / 2, height / 2] || this.props.translate;
 
@@ -98,8 +113,12 @@ export default class Map extends Component {
       size: ([width, height])
     });
 
+    console.log(tiles)
+
     var styleContainer = {
-      position: 'relative'
+      position: 'relative',
+      backgroundColor: '#EEE',
+      width: width
     }
 
     return (
@@ -110,6 +129,8 @@ export default class Map extends Component {
           height= {height}
           projection = {proj}
           onZoom= {onZoom}
+          onZoomStart= {onZoomStart}
+          onZoomEnd= {onZoomEnd}
           center= {center}
         >
           <Vector
@@ -117,6 +138,8 @@ export default class Map extends Component {
             projection= {proj}
             geoPath= {geo}
             data= {data}
+            width= {width}
+            height= {height}
             popupContent= {popupContent}
             {...this.state}
           />
