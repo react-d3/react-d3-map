@@ -137,21 +137,14 @@ export default class Vector extends Component {
       willChange: 'transform'
     }
 
-    var tilesMap;
-
-    if(!zoomStart) {
-      var tilesMap = <Tile
-        ref= 'tiles'
-        scale= {tiles.scale}
-        translate= {tiles.translate}
-        tiles= {tiles}
-        style= {overlayStyle}
-      />
-    }
-
     return (
       <g>
-        {tilesMap}
+        <Tile
+          ref= 'tiles'
+          scale= {tiles.scale}
+          translate= {tiles.translate}
+          tiles= {tiles}
+        />
         <g
           ref= 'tilesOverlay'
           transform= {transform}

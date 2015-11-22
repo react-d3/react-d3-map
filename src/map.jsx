@@ -113,8 +113,6 @@ export default class Map extends Component {
       size: ([width, height])
     });
 
-    console.log(tiles)
-
     var styleContainer = {
       position: 'relative',
       backgroundColor: '#EEE',
