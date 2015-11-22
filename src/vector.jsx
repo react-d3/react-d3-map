@@ -20,10 +20,6 @@ import {
 } from 'react-d3-map-core';
 
 import {
-  default as TileOverlay
-} from './components/tileOverlay'
-
-import {
   default as PolygonPopupGroup
 } from './PolygonPopupGroup'
 
@@ -86,33 +82,6 @@ export default class Vector extends Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    var tiles = ReactDOM.findDOMNode(this.refs.tiles)
-    var zoomStart = nextProps.zoomStart;
-    var nowZoomStart = this.props.zoomStart;
-
-    if(zoomStart === true && zoomStart !== nowZoomStart) {
-      this.overlay = tiles.children[0].cloneNode(true);
-    }else if (zoomStart === false) {
-      // clear overlay
-      var overlay = ReactDOM.findDOMNode(this.refs.tilesOverlay);
-      while (overlay.firstChild) {
-        overlay.removeChild(overlay.firstChild);
-      }
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    var overlay = ReactDOM.findDOMNode(this.refs.tilesOverlay)
-    var tiles = ReactDOM.findDOMNode(this.refs.tiles)
-    var prevZoomStart = prevProps.zoomStart;
-    var nowZoomStart = this.props.zoomStart;
-
-    if(nowZoomStart === true && prevZoomStart !== nowZoomStart) {
-      overlay.appendChild(this.overlay);
-    }
-  }
-
   render() {
     const {
       width,
@@ -123,7 +92,13 @@ export default class Vector extends Component {
       projection,
       popupContent,
       startTiles,
-      zoomStart
+      zoomStart,
+      onPolygonClick,
+      onPolygonCloseClick,
+      onLineClick,
+      onLineCloseClick,
+      onMarkerClick,
+      onMarkerCloseClick
     } = this.props
 
     const {
@@ -145,29 +120,29 @@ export default class Vector extends Component {
           translate= {tiles.translate}
           tiles= {tiles}
         />
-        <g
-          ref= 'tilesOverlay'
-          transform= {transform}
-          style= {overlayStyle}
-          >
-        </g>
         <PolygonPopupGroup
           data= {polygonData}
           geoPath= {geoPath}
           projection= {projection}
           popupContent= {popupContent}
+          onClick= {onPolygonClick? onPolygonClick: ''}
+          onCloseClick= {onPolygonCloseClick? onPolygonCloseClick: ''}
         />
         <LinePopupGroup
           data= {lineData}
           geoPath= {geoPath}
           projection= {projection}
           popupContent= {popupContent}
+          onClick= {onLineClick? onLineClick: ''}
+          onCloseClick= {onLineCloseClick? onLineCloseClick: ''}
         />
         <MarkerPopupGroup
           data= {pointData}
           geoPath= {geoPath}
           projection= {projection}
           popupContent= {popupContent}
+          onClick= {onMarkerClick? onMarkerClick: ''}
+          onCloseClick= {onMarkerCloseClick? onMarkerCloseClick: ''}
         />
       </g>
     )

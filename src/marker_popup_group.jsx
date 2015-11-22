@@ -16,10 +16,10 @@ import {
 } from 'react-d3-map-core';
 
 import {
-  default as PolygonGroup
-} from './components/polygonGroup'
+  default as MarkerGroup
+} from './components/marker_group'
 
-export default class PolygonPopupGroup extends Component {
+export default class PointPopupGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -35,19 +35,20 @@ export default class PolygonPopupGroup extends Component {
     } = this.state;
 
     const {
-      projection
+      projection,
+      onClick
     } = this.props;
+
+    if(onClick) onClick(that, d, id);
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
       var newPopup = showPopup.delete(id);
     } else {
       // add a popup
-      var position = projection.invert([d3.event.clientX, d3.event.clientY]);
-
       var newPopup = showPopup.set(id, Map({
-        xPopup: position[0],
-        yPopup: position[1],
+        xPopup: d.geometry.coordinates[0],
+        yPopup: d.geometry.coordinates[1],
         data: d
       }));
     }
@@ -58,10 +59,15 @@ export default class PolygonPopupGroup extends Component {
   }
 
   _onCloseClick(id) {
-
     var {
       showPopup
     } = this.state;
+
+    const {
+      onCloseClick
+    } = this.props;
+
+    if(onCloseClick) onCloseClick(id);
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
@@ -87,6 +93,7 @@ export default class PolygonPopupGroup extends Component {
     } = this.props;
 
     var onClick = this._onClick.bind(this)
+
     var popup;
 
     if(showPopup.size) {
@@ -104,7 +111,7 @@ export default class PolygonPopupGroup extends Component {
           <Popup
             key= {i}
             x= {point[0]}
-            y= {point[1] - 10}
+            y= {point[1] - 50}
             contentPopup={content}
             closeClick= {onCloseClick}
           />
@@ -115,9 +122,9 @@ export default class PolygonPopupGroup extends Component {
 
     return (
       <g>
-        <PolygonGroup
+        <MarkerGroup
           data= {data}
-          geoPath= {geoPath}
+          projection= {projection}
           onClick= {onClick}
           {...this.state}
         />

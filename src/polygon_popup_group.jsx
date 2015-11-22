@@ -16,10 +16,10 @@ import {
 } from 'react-d3-map-core';
 
 import {
-  default as LineGroup
-} from './components/lineGroup'
+  default as PolygonGroup
+} from './components/polygon_group'
 
-export default class LinePopupGroup extends Component {
+export default class PolygonPopupGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -35,8 +35,11 @@ export default class LinePopupGroup extends Component {
     } = this.state;
 
     const {
-      projection
+      projection,
+      onClick
     } = this.props;
+
+    if(onClick) onClick(that, d, id);
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
@@ -62,6 +65,12 @@ export default class LinePopupGroup extends Component {
     var {
       showPopup
     } = this.state;
+
+    const {
+      onCloseClick
+    } = this.propsl
+
+    if(onCloseClick) onCloseClick(id);
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
@@ -115,7 +124,7 @@ export default class LinePopupGroup extends Component {
 
     return (
       <g>
-        <LineGroup
+        <PolygonGroup
           data= {data}
           geoPath= {geoPath}
           onClick= {onClick}
