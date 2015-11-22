@@ -2,8 +2,6 @@
 
 react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG components to replace layers!!!
 
-**UNDER HEAVY DEVELOPMENT, DON'T USE IT IN PRODUCTION**
-
 ## LIVE DEMO
 
 #### Multipolygon and Polygon
