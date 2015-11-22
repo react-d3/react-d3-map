@@ -21,15 +21,15 @@ import {
 
 import {
   default as PolygonPopupGroup
-} from './PolygonPopupGroup'
+} from './polygon_popup_group'
 
 import {
   default as MarkerPopupGroup
-} from './MarkerPopupGroup'
+} from './marker_popup_group'
 
 import {
   default as LinePopupGroup
-} from './LinePopupGroup'
+} from './line_popup_group'
 
 export default class Vector extends Component {
   constructor(props) {
