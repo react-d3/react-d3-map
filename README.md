@@ -138,8 +138,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 })()
 ```
 
-![point](./example/img/point.png
-  )
+![point](./example/img/point.png)
 
 ## Install
 
