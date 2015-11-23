@@ -11,6 +11,8 @@ import {
   Map
 } from 'immutable'
 
+import d3 from 'd3';
+
 import {
   Popup
 } from 'react-d3-map-core';
