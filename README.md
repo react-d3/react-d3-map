@@ -30,6 +30,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
   var center = [-100.95, 40.7];
   // your polygon data
   var data = require('json!../data/states.json');
+  var popupContent = function(d) { return 'hi, this is id: ' + d.properties.react_d3_map__id + ' polygon.'; }
 
   ReactDOM.render(
     <Map
@@ -39,6 +40,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scaleExtent= {scaleExtent}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-multipolygon')
   )
@@ -59,6 +61,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
   var scale = 1 << 22;
   var scaleExtent = [1 << 20, 1 << 24]
   var center = [-122.486052, 37.830348];
+  var popupContent = function(d) { return d.properties.text; }
 
   var data = {
           "type": "Feature",
@@ -100,6 +103,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scaleExtent= {scaleExtent}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-line')
   )
@@ -122,6 +126,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
   var center = [-5, 55.4];
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
+  var popupContent = function(d) { return d.properties.name; }
 
   ReactDOM.render(
     <Map
@@ -131,6 +136,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scaleExtent= {scaleExtent}
       center= {center}
       data= {data}
+      popupContent= {popupContent}
     />
   , document.getElementById('blank-point')
   )
