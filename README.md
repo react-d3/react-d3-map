@@ -146,6 +146,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 npm install react-d3-map
 ```
 
+
 ## License
 
 Apache 2.0
