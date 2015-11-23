@@ -98,7 +98,13 @@ export default class Vector extends Component {
       onLineClick,
       onLineCloseClick,
       onMarkerClick,
-      onMarkerCloseClick
+      onMarkerCloseClick,
+      onPolygonMouseOver,
+      onPolygonMouseOut,
+      onLineMouseOut,
+      onLineMouseOver,
+      onMarkerMouseOver,
+      onMarkerMouseOut
     } = this.props
 
     const {
@@ -127,6 +133,8 @@ export default class Vector extends Component {
           popupContent= {popupContent}
           onClick= {onPolygonClick? onPolygonClick: ''}
           onCloseClick= {onPolygonCloseClick? onPolygonCloseClick: ''}
+          onMouseOver= {onPolygonMouseOver}
+          onMouseOut= {onPolygonMouseOut}
         />
         <LinePopupGroup
           data= {lineData}
@@ -135,6 +143,8 @@ export default class Vector extends Component {
           popupContent= {popupContent}
           onClick= {onLineClick? onLineClick: ''}
           onCloseClick= {onLineCloseClick? onLineCloseClick: ''}
+          onMouseOut= {onLineMouseOut}
+          onMouseOver= {onLineMouseOver}
         />
         <MarkerPopupGroup
           data= {pointData}
@@ -143,6 +153,8 @@ export default class Vector extends Component {
           popupContent= {popupContent}
           onClick= {onMarkerClick? onMarkerClick: ''}
           onCloseClick= {onMarkerCloseClick? onMarkerCloseClick: ''}
+          onMouseOut= {onMarkerMouseOut}
+          onMouseOver= {onMarkerMouseOver}
         />
       </g>
     )

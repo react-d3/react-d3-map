@@ -32,6 +32,20 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
   var data = require('json!../data/states.json');
   var popupContent = function(d) { return 'hi, this is id: ' + d.properties.react_d3_map__id + ' polygon.'; }
 
+  var onPolygonMouseOut= function(dom , d, i) {
+    console.log('out')
+  }
+  var onPolygonMouseOver= function(dom, d, i) {
+    console.log('over')
+  }
+  var onPolygonClick= function(dom, d, i) {
+    console.log('click')
+  }
+  var onPolygonCloseClick= function(id) {
+    console.log('close click')
+    console.log(id)
+  }
+
   ReactDOM.render(
     <Map
       width= {width}
@@ -41,6 +55,10 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       center= {center}
       data= {data}
       popupContent= {popupContent}
+      onPolygonMouseOut= {onPolygonMouseOut}
+      onPolygonMouseOver= {onPolygonMouseOver}
+      onPolygonClick= {onPolygonClick}
+      onPolygonCloseClick= {onPolygonCloseClick}
     />
   , document.getElementById('blank-multipolygon')
   )
@@ -94,6 +112,19 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
           }
       }
 
+  var onLineMouseOut= function(dom , d, i) {
+    console.log('out')
+  }
+  var onLineMouseOver= function(dom, d, i) {
+    console.log('over')
+  }
+  var onLineClick= function(dom, d, i) {
+    console.log('click')
+  }
+  var onLineCloseClick= function(id) {
+    console.log('close click')
+  }
+
 
   ReactDOM.render(
     <Map
@@ -104,6 +135,10 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       center= {center}
       data= {data}
       popupContent= {popupContent}
+      onLineClick= {onLineClick}
+      onLineCloseClick= {onLineCloseClick}
+      onLineMouseOver= {onLineMouseOver}
+      onLineMouseOut= {onLineMouseOut}
     />
   , document.getElementById('blank-line')
   )
@@ -127,6 +162,18 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
+  var onMarkerMouseOut= function(dom , d, i) {
+    console.log('out')
+  }
+  var onMarkerMouseOver= function(dom, d, i) {
+    console.log('over')
+  }
+  var onMarkerClick= function(dom, d, i) {
+    console.log('click')
+  }
+  var onMarkerCloseClick= function(id) {
+    console.log('close click')
+  }
 
   ReactDOM.render(
     <Map
@@ -137,6 +184,10 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       center= {center}
       data= {data}
       popupContent= {popupContent}
+      onMarkerClick= {onMarkerClick}
+      onMarkerCloseClick= {onMarkerCloseClick}
+      onMarkerMouseOver= {onMarkerMouseOver}
+      onMarkerMouseOut= {onMarkerMouseOut}
     />
   , document.getElementById('blank-point')
   )

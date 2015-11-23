@@ -132,6 +132,7 @@ export default class Map extends Component {
           center= {center}
         >
           <Vector
+            {...this.props}
             tiles= {tiles}
             projection= {proj}
             geoPath= {geo}

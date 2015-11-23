@@ -89,7 +89,9 @@ export default class PointPopupGroup extends Component {
       data,
       geoPath,
       projection,
-      popupContent
+      popupContent,
+      onMouseOver,
+      onMouseOut
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -126,6 +128,8 @@ export default class PointPopupGroup extends Component {
           data= {data}
           projection= {projection}
           onClick= {onClick}
+          onMouseOver= {onMouseOver}
+          onMouseOut= {onMouseOut}
           {...this.state}
         />
         {popup}

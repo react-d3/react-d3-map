@@ -70,7 +70,7 @@ export default class PolygonPopupGroup extends Component {
 
     const {
       onCloseClick
-    } = this.propsl
+    } = this.props;
 
     if(onCloseClick) onCloseClick(id);
 
@@ -94,7 +94,9 @@ export default class PolygonPopupGroup extends Component {
       data,
       geoPath,
       projection,
-      popupContent
+      popupContent,
+      onMouseOut,
+      onMouseOver
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -130,6 +132,8 @@ export default class PolygonPopupGroup extends Component {
           data= {data}
           geoPath= {geoPath}
           onClick= {onClick}
+          onMouseOver= {onMouseOver}
+          onMouseOut= {onMouseOut}
           {...this.state}
         />
         {popup}

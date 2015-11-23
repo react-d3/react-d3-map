@@ -24,7 +24,9 @@ export default class PolygonGroup extends Component {
     const {
       data,
       projection,
-      onClick
+      onClick,
+      onMouseOver,
+      onMouseOut
     } = this.props;
 
     var markers;
@@ -40,6 +42,8 @@ export default class PolygonGroup extends Component {
               x= {+projection(d.geometry.coordinates)[0]}
               y= {+projection(d.geometry.coordinates)[1]}
               onClick= {onClick}
+              onMouseOver= {onMouseOver}
+              onMouseOut= {onMouseOut}
             />
           )
         })
@@ -50,6 +54,8 @@ export default class PolygonGroup extends Component {
           x= {+projection(data.geometry.coordinates)[0]}
           y= {+projection(data.geometry.coordinates)[1]}
           onClick= {onClick}
+          onMouseOver= {onMouseOver}
+          onMouseOut= {onMouseOut}
         />)
       }
     }

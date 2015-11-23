@@ -24,14 +24,16 @@ export default class MeshGroup extends Component {
     const {
       data,
       geoPath,
-      onClick
+      onClick,
+      onMouseOver,
+      onMouseOut
     } = this.props;
 
-    var polygons;
+    var meshs;
 
     if(data && data !== []) {
       if(Array.isArray(data)) {
-        polygons = data.map((d, i) => {
+        meshs = data.map((d, i) => {
           return (
             <Mesh
               id= {d.properties.react_d3_map__id}
@@ -39,22 +41,26 @@ export default class MeshGroup extends Component {
               data= {d}
               geoPath= {geoPath}
               onClick= {onClick}
+              onMouseOver= {onMouseOver}
+              onMouseOut= {onMouseOut}
             />
           )
         })
       }else {
-        polygons = (<Mesh
+        meshs = (<Mesh
           id= {data.properties.react_d3_map__id}
           data= {data}
           geoPath= {geoPath}
           onClick= {onClick}
+          onMouseOver= {onMouseOver}
+          onMouseOut= {onMouseOut}
         />)
       }
     }
 
     return (
       <g>
-        {polygons}
+        {meshs}
       </g>
     )
   }

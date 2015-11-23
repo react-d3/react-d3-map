@@ -24,7 +24,9 @@ export default class PolygonGroup extends Component {
     const {
       data,
       geoPath,
-      onClick
+      onClick,
+      onMouseOver,
+      onMouseOut
     } = this.props;
 
     var polygons;
@@ -39,6 +41,8 @@ export default class PolygonGroup extends Component {
               data= {d}
               geoPath= {geoPath}
               onClick= {onClick}
+              onMouseOver= {onMouseOver}
+              onMouseOut= {onMouseOut}
             />
           )
         })
@@ -48,6 +52,8 @@ export default class PolygonGroup extends Component {
           data= {data}
           geoPath= {geoPath}
           onClick= {onClick}
+          onMouseOver= {onMouseOver}
+          onMouseOut= {onMouseOut}
         />)
       }
     }
