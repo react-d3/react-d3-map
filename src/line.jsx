@@ -48,6 +48,19 @@ var css= require('./css/polygon.css');
           }
       }
 
+  var onLineMouseOut= function(dom , d, i) {
+    console.log('out')
+  }
+  var onLineMouseOver= function(dom, d, i) {
+    console.log('over')
+  }
+  var onLineClick= function(dom, d, i) {
+    console.log('click')
+  }
+  var onLineCloseClick= function(id) {
+    console.log('close click')
+  }
+
 
   ReactDOM.render(
     <Map
@@ -58,6 +71,10 @@ var css= require('./css/polygon.css');
       center= {center}
       data= {data}
       popupContent= {popupContent}
+      onLineClick= {onLineClick}
+      onLineCloseClick= {onLineCloseClick}
+      onLineMouseOver= {onLineMouseOver}
+      onLineMouseOut= {onLineMouseOut}
     />
   , document.getElementById('blank-line')
   )

@@ -18,6 +18,19 @@ var css= require('./css/polygon.css');
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
+  var onMarkerMouseOut= function(dom , d, i) {
+    console.log('out')
+  }
+  var onMarkerMouseOver= function(dom, d, i) {
+    console.log('over')
+  }
+  var onMarkerClick= function(dom, d, i) {
+    console.log('click')
+  }
+  var onMarkerCloseClick= function(id) {
+    console.log('close click')
+  }
+
 
   ReactDOM.render(
     <Map
@@ -28,6 +41,10 @@ var css= require('./css/polygon.css');
       center= {center}
       data= {data}
       popupContent= {popupContent}
+      onMarkerClick= {onMarkerClick}
+      onMarkerCloseClick= {onMarkerCloseClick}
+      onMarkerMouseOver= {onMarkerMouseOver}
+      onMarkerMouseOut= {onMarkerMouseOut}
     />
   , document.getElementById('blank-point')
   )
