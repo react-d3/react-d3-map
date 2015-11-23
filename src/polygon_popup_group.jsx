@@ -102,7 +102,7 @@ export default class PolygonPopupGroup extends Component {
     var onClick = this._onClick.bind(this)
     var popup;
 
-    if(showPopup.size) {
+    if(showPopup.size && popupContent) {
       popup = showPopup.keySeq().toArray().map((d, i) => {
         var xPopup = showPopup.get(d).get('xPopup');
         var yPopup = showPopup.get(d).get('yPopup');
