@@ -34,6 +34,9 @@
     "react-d3-map-core": "^0.11.10",
     "react-faux-dom": "^2.1.0"
   },
+  "devDependencies": {
+    "react": "^0.14.3"
+  },
   "jest": {
     "scriptPreprocessor": "./node_modules/babel-jest",
     "unmockedModulePathPatterns": [
