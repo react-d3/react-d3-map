@@ -34,13 +34,16 @@ export default class PolygonGroup extends Component {
     if(data && data !== []) {
       if(Array.isArray(data)) {
         markers = data.map((d, i) => {
+          var x = +projection(d.geometry.coordinates)[0];
+          var y = +projection(d.geometry.coordinates)[1];
+          var id = x + '-' + y;
           return (
             <Marker
-              id= {d.properties.react_d3_map__id}
+              id= {id}
               key= {i}
               data= {d}
-              x= {+projection(d.geometry.coordinates)[0]}
-              y= {+projection(d.geometry.coordinates)[1]}
+              x= {x}
+              y= {y}
               onClick= {onClick}
               onMouseOver= {onMouseOver}
               onMouseOut= {onMouseOut}
@@ -48,11 +51,14 @@ export default class PolygonGroup extends Component {
           )
         })
       }else {
+        var x = +projection(d.geometry.coordinates)[0];
+        var y = +projection(d.geometry.coordinates)[1];
+        var id = x + '-' + y;
         markers = (<Marker
-          id= {data.properties.react_d3_map__id}
+          id= {id}
           data= {data}
-          x= {+projection(data.geometry.coordinates)[0]}
-          y= {+projection(data.geometry.coordinates)[1]}
+          x= {x}
+          y= {y}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
