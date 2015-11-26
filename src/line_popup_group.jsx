@@ -96,7 +96,8 @@ export default class LinePopupGroup extends Component {
       projection,
       popupContent,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      meshClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -134,6 +135,7 @@ export default class LinePopupGroup extends Component {
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
+          meshClass= {meshClass}
           {...this.state}
         />
         {popup}

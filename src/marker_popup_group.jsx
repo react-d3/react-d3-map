@@ -91,7 +91,8 @@ export default class PointPopupGroup extends Component {
       projection,
       popupContent,
       onMouseOver,
-      onMouseOut
+      onMouseOut,
+      markerClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -130,6 +131,7 @@ export default class PointPopupGroup extends Component {
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
+          markerClass= {markerClass}
           {...this.state}
         />
         {popup}

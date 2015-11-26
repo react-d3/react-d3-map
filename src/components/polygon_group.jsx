@@ -26,34 +26,50 @@ export default class PolygonGroup extends Component {
       geoPath,
       onClick,
       onMouseOver,
-      onMouseOut
+      onMouseOut,
+      polygonClass
     } = this.props;
 
     var polygons;
 
-    if(data && data !== []) {
-      if(Array.isArray(data)) {
-        polygons = data.map((d, i) => {
+    if(data.type === 'FeatureCollection') {
+      var polygonData = [];
+
+      // loop through features
+      data.features.forEach(function(d) {
+        polygonData.push(d);
+      })
+    }else if(data.type === 'Feature') {
+      var polygonData;
+
+      polygonData = data;
+    }
+
+    if(polygonData) {
+      if(Array.isArray(polygonData)) {
+        polygons = polygonData.map((d, i) => {
           return (
             <Polygon
-              id= {d.properties.react_d3_map__id}
-              key= {i}
+              id= {'react-d3-map__polygon' + i}
+              key= {'react-d3-map__polygon' + i}
               data= {d}
               geoPath= {geoPath}
               onClick= {onClick}
               onMouseOver= {onMouseOver}
               onMouseOut= {onMouseOut}
+              polygonClass= {polygonClass}
             />
           )
         })
       }else {
         polygons = (<Polygon
-          id= {data.properties.react_d3_map__id}
-          data= {data}
+          id= {'react-d3-map__polygon'}
+          data= {polygonData}
           geoPath= {geoPath}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
+          polygonClass= {polygonClass}
         />)
       }
     }

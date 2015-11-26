@@ -5,6 +5,7 @@ var ReactDOM = require('react-dom');
 var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
+var MarkerPopupGroup = require('../../lib/index').MarkerPopupGroup;
 
 var css= require('./css/polygon.css');
 
@@ -39,13 +40,18 @@ var css= require('./css/polygon.css');
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      popupContent= {popupContent}
-      onMarkerClick= {onMarkerClick}
-      onMarkerCloseClick= {onMarkerCloseClick}
-      onMarkerMouseOver= {onMarkerMouseOver}
-      onMarkerMouseOut= {onMarkerMouseOut}
-    />
+    >
+      <MarkerPopupGroup
+        key= {"polygon-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onMarkerClick}
+        onCloseClick= {onMarkerCloseClick}
+        onMouseOver= {onMarkerMouseOver}
+        onMouseOut= {onMarkerMouseOut}
+        markerClass= {"your-marker-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-point')
   )
 

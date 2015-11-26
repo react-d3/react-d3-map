@@ -5,6 +5,8 @@ var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
 
+var LinePopupGroup = require('../../lib/index').LinePopupGroup;
+
 var css= require('./css/polygon.css');
 
 // Example
@@ -69,13 +71,18 @@ var css= require('./css/polygon.css');
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      popupContent= {popupContent}
-      onLineClick= {onLineClick}
-      onLineCloseClick= {onLineCloseClick}
-      onLineMouseOver= {onLineMouseOver}
-      onLineMouseOut= {onLineMouseOut}
-    />
+    >
+      <LinePopupGroup
+        key= {"line-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onLineClick}
+        onCloseClick= {onLineCloseClick}
+        onMouseOver= {onLineMouseOver}
+        onMouseOut= {onLineMouseOut}
+        meshClass= {"your-line-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-line')
   )
 

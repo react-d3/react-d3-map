@@ -96,7 +96,8 @@ export default class PolygonPopupGroup extends Component {
       projection,
       popupContent,
       onMouseOut,
-      onMouseOver
+      onMouseOver,
+      polygonClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -134,6 +135,7 @@ export default class PolygonPopupGroup extends Component {
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
+          polygonClass= {polygonClass}
           {...this.state}
         />
         {popup}

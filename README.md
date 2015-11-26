@@ -22,16 +22,18 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 #### Polygon and MultiPolygon
 
 ```js
+
+var Map = require('react-d3-map').Map;
+
+var PolygonPopupGroup = require('react-d3-map').PolygonPopupGroup;
+
 (function() {
   var width = 1000;
   var height = 800;
   var scale = 1 << 12;
   var scaleExtent = [1 << 10, 1 << 14]
   var center = [-100.95, 40.7];
-  // your polygon data
   var data = require('json!../data/states.json');
-  var popupContent = function(d) { return 'hi, this is id: ' + d.properties.react_d3_map__id + ' polygon.'; }
-
   var onPolygonMouseOut= function(dom , d, i) {
     console.log('out')
   }
@@ -45,6 +47,14 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
     console.log('close click')
     console.log(id)
   }
+  var popupContent = function(d) { return 'hi, i am polygon'; }
+
+  // data= {data}
+  // onPolygonMouseOut= {onPolygonMouseOut}
+  // onPolygonMouseOver= {onPolygonMouseOver}
+  // onPolygonClick= {onPolygonClick}
+  // onPolygonCloseClick= {onPolygonCloseClick}
+
 
   ReactDOM.render(
     <Map
@@ -53,13 +63,18 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      popupContent= {popupContent}
-      onPolygonMouseOut= {onPolygonMouseOut}
-      onPolygonMouseOver= {onPolygonMouseOver}
-      onPolygonClick= {onPolygonClick}
-      onPolygonCloseClick= {onPolygonCloseClick}
-    />
+    >
+      <PolygonPopupGroup
+        key= {"polygon-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onPolygonClick}
+        onCloseClick= {onPolygonCloseClick}
+        onMouseOver= {onPolygonMouseOver}
+        onMouseOut= {onPolygonMouseOut}
+        polygonClass= {"your-polygon-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-multipolygon')
   )
 
@@ -73,6 +88,12 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 #### LineString and MultiLineString
 
 ```js
+
+var Map = require('react-d3-map').Map;
+
+var LinePopupGroup = require('react-d3-map').LinePopupGroup;
+
+
 (function() {
   var width = 1000;
   var height = 800;
@@ -133,13 +154,18 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      popupContent= {popupContent}
-      onLineClick= {onLineClick}
-      onLineCloseClick= {onLineCloseClick}
-      onLineMouseOver= {onLineMouseOver}
-      onLineMouseOut= {onLineMouseOut}
-    />
+    >
+      <LinePopupGroup
+        key= {"line-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onLineClick}
+        onCloseClick= {onLineCloseClick}
+        onMouseOver= {onLineMouseOver}
+        onMouseOut= {onLineMouseOut}
+        meshClass= {"your-line-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-line')
   )
 
@@ -152,6 +178,11 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 #### Points and Markers
 
 ```js
+
+var Map = require('react-d3-map').Map;
+var MarkerPopupGroup = require('react-d3-map').MarkerPopupGroup;
+
+
 // Example
 (function() {
   var width = 1000;
@@ -175,6 +206,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
     console.log('close click')
   }
 
+
   ReactDOM.render(
     <Map
       width= {width}
@@ -182,13 +214,18 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      popupContent= {popupContent}
-      onMarkerClick= {onMarkerClick}
-      onMarkerCloseClick= {onMarkerCloseClick}
-      onMarkerMouseOver= {onMarkerMouseOver}
-      onMarkerMouseOut= {onMarkerMouseOut}
-    />
+    >
+      <MarkerPopupGroup
+        key= {"polygon-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onMarkerClick}
+        onCloseClick= {onMarkerCloseClick}
+        onMouseOver= {onMarkerMouseOver}
+        onMouseOut= {onMarkerMouseOut}
+        markerClass= {"your-marker-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-point')
   )
 

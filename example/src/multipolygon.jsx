@@ -6,6 +6,10 @@ var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
 
+var PolygonPopupGroup = require('../../lib/index').PolygonPopupGroup;
+var LinePopupGroup = require('../../lib/index').LinePopupGroup;
+var MarkerPopupGroup = require('../../lib/index').MarkerPopupGroup;
+
 var css= require('./css/polygon.css');
 
 // Example
@@ -29,6 +33,13 @@ var css= require('./css/polygon.css');
     console.log('close click')
     console.log(id)
   }
+  var popupContent = function(d) { return 'hi, i am polygon'; }
+
+  // data= {data}
+  // onPolygonMouseOut= {onPolygonMouseOut}
+  // onPolygonMouseOver= {onPolygonMouseOver}
+  // onPolygonClick= {onPolygonClick}
+  // onPolygonCloseClick= {onPolygonCloseClick}
 
 
   ReactDOM.render(
@@ -38,12 +49,18 @@ var css= require('./css/polygon.css');
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
-      data= {data}
-      onPolygonMouseOut= {onPolygonMouseOut}
-      onPolygonMouseOver= {onPolygonMouseOver}
-      onPolygonClick= {onPolygonClick}
-      onPolygonCloseClick= {onPolygonCloseClick}
-    />
+    >
+      <PolygonPopupGroup
+        key= {"polygon-test"}
+        data= {data}
+        popupContent= {popupContent}
+        onClick= {onPolygonClick}
+        onCloseClick= {onPolygonCloseClick}
+        onMouseOver= {onPolygonMouseOver}
+        onMouseOut= {onPolygonMouseOut}
+        polygonClass= {"your-polygon-css-class"}
+      />
+    </Map>
   , document.getElementById('blank-multipolygon')
   )
 

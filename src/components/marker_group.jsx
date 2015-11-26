@@ -26,14 +26,28 @@ export default class PolygonGroup extends Component {
       projection,
       onClick,
       onMouseOver,
-      onMouseOut
+      onMouseOut,
+      markerClass
     } = this.props;
 
     var markers;
 
-    if(data && data !== []) {
-      if(Array.isArray(data)) {
-        markers = data.map((d, i) => {
+    if(data.type === 'FeatureCollection') {
+      var pointData = [];
+
+      // loop through features
+      data.features.forEach(function(d) {
+        pointData.push(d);
+      })
+    }else if(data.type === 'Feature') {
+      var pointData;
+
+      pointData = data;
+    }
+
+    if(pointData) {
+      if(Array.isArray(pointData)) {
+        markers = pointData.map((d, i) => {
           var x = +projection(d.geometry.coordinates)[0];
           var y = +projection(d.geometry.coordinates)[1];
           var id = x + '-' + y;
@@ -47,6 +61,7 @@ export default class PolygonGroup extends Component {
               onClick= {onClick}
               onMouseOver= {onMouseOver}
               onMouseOut= {onMouseOut}
+              markerClass= {markerClass}
             />
           )
         })
@@ -56,12 +71,13 @@ export default class PolygonGroup extends Component {
         var id = x + '-' + y;
         markers = (<Marker
           id= {id}
-          data= {data}
+          data= {pointData}
           x= {x}
           y= {y}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
+          markerClass= {markerClass}
         />)
       }
     }
