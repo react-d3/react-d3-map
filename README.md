@@ -49,13 +49,6 @@ var PolygonPopupGroup = require('react-d3-map').PolygonPopupGroup;
   }
   var popupContent = function(d) { return 'hi, i am polygon'; }
 
-  // data= {data}
-  // onPolygonMouseOut= {onPolygonMouseOut}
-  // onPolygonMouseOver= {onPolygonMouseOver}
-  // onPolygonClick= {onPolygonClick}
-  // onPolygonCloseClick= {onPolygonCloseClick}
-
-
   ReactDOM.render(
     <Map
       width= {width}
