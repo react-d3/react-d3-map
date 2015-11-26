@@ -31,55 +31,44 @@ export default class PolygonGroup extends Component {
     } = this.props;
 
     var markers;
+    var pointData;
 
     if(data.type === 'FeatureCollection') {
-      var pointData = [];
+      pointData = [];
 
       // loop through features
       data.features.forEach(function(d) {
         pointData.push(d);
-      })
+      });
+
     }else if(data.type === 'Feature') {
-      var pointData;
 
       pointData = data;
     }
 
     if(pointData) {
-      if(Array.isArray(pointData)) {
-        markers = pointData.map((d, i) => {
-          var x = +projection(d.geometry.coordinates)[0];
-          var y = +projection(d.geometry.coordinates)[1];
-          var id = x + '-' + y;
-          return (
-            <Marker
-              id= {id}
-              key= {i}
-              data= {d}
-              x= {x}
-              y= {y}
-              onClick= {onClick}
-              onMouseOver= {onMouseOver}
-              onMouseOut= {onMouseOut}
-              markerClass= {markerClass}
-            />
-          )
-        })
-      }else {
+      // if not array, make it as array
+      if(!Array.isArray(pointData))
+        pointData = [pointData];
+
+      markers = pointData.map((d, i) => {
         var x = +projection(d.geometry.coordinates)[0];
         var y = +projection(d.geometry.coordinates)[1];
         var id = x + '-' + y;
-        markers = (<Marker
-          id= {id}
-          data= {pointData}
-          x= {x}
-          y= {y}
-          onClick= {onClick}
-          onMouseOver= {onMouseOver}
-          onMouseOut= {onMouseOut}
-          markerClass= {markerClass}
-        />)
-      }
+        return (
+          <Marker
+            id= {id}
+            key= {i}
+            data= {d}
+            x= {x}
+            y= {y}
+            onClick= {onClick}
+            onMouseOver= {onMouseOver}
+            onMouseOut= {onMouseOut}
+            markerClass= {markerClass}
+          />
+        )
+      })
     }
 
     return (
