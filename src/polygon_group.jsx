@@ -18,10 +18,10 @@ import {
 } from 'react-d3-map-core';
 
 import {
-  default as LineGroup
-} from './components/line_group'
+  default as PolygonCollection
+} from './components/polygon_collection'
 
-export default class LinePopupGroup extends Component {
+export default class PolygonGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -97,7 +97,7 @@ export default class LinePopupGroup extends Component {
       popupContent,
       onMouseOut,
       onMouseOver,
-      meshClass
+      polygonClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
@@ -129,13 +129,13 @@ export default class LinePopupGroup extends Component {
 
     return (
       <g>
-        <LineGroup
+        <PolygonCollection
           data= {data}
           geoPath= {geoPath}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
-          meshClass= {meshClass}
+          polygonClass= {polygonClass}
           {...this.state}
         />
         {popup}

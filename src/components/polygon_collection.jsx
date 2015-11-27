@@ -7,10 +7,10 @@ import {
 } from 'react'
 
 import {
-  Mesh
+  Polygon
 } from 'react-d3-map-core';
 
-export default class MeshGroup extends Component {
+export default class PolygonCollection extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.showPopup.size
       !== this.props.showPopup.size) {
@@ -27,56 +27,56 @@ export default class MeshGroup extends Component {
       onClick,
       onMouseOver,
       onMouseOut,
-      meshClass
+      polygonClass
     } = this.props;
 
-    var meshs;
+    var polygons;
 
     if(data.type === 'FeatureCollection') {
-      var lineData = [];
+      var polygonData = [];
 
       // loop through features
       data.features.forEach(function(d) {
-        lineData.push(d);
+        polygonData.push(d);
       })
     }else if(data.type === 'Feature') {
-      var lineData;
+      var polygonData;
 
-      lineData = data;
+      polygonData = data;
     }
 
-    if(lineData) {
-      if(Array.isArray(lineData)) {
-        meshs = lineData.map((d, i) => {
+    if(polygonData) {
+      if(Array.isArray(polygonData)) {
+        polygons = polygonData.map((d, i) => {
           return (
-            <Mesh
-              id= {'react-d3-map__mesh' + i}
-              key= {'react-d3-map__mesh' + i}
+            <Polygon
+              id= {'react-d3-map__polygon' + i}
+              key= {'react-d3-map__polygon' + i}
               data= {d}
               geoPath= {geoPath}
               onClick= {onClick}
               onMouseOver= {onMouseOver}
               onMouseOut= {onMouseOut}
-              meshClass= {meshClass}
+              polygonClass= {polygonClass}
             />
           )
         })
       }else {
-        meshs = (<Mesh
-          id= {'react-d3-map__mesh'}
-          data= {lineData}
+        polygons = (<Polygon
+          id= {'react-d3-map__polygon'}
+          data= {polygonData}
           geoPath= {geoPath}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
-          meshClass= {meshClass}
+          polygonClass= {polygonClass}
         />)
       }
     }
 
     return (
       <g>
-        {meshs}
+        {polygons}
       </g>
     )
   }

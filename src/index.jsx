@@ -16,35 +16,35 @@ export {Vector}
 // Group
 
 import {
-  default as LineGroup
-} from './components/line_group';
+  default as MeshCollection
+} from './components/mesh_collection';
 
 import {
-  default as MarkerGroup
-} from './components/marker_group';
+  default as MarkerCollection
+} from './components/marker_collection';
 
 import {
-  default as PolygonGroup
-} from './components/polygon_group';
+  default as PolygonCollection
+} from './components/polygon_collection';
 
-export {LineGroup}
-export {MarkerGroup}
-export {PolygonGroup}
+export {MeshCollection}
+export {MarkerCollection}
+export {PolygonCollection}
 
 // popup group
 
 import {
-  default as LinePopupGroup
-} from './line_popup_group';
+  default as LineGroup
+} from './line_group';
 
 import {
-  default as MarkerPopupGroup
-} from './marker_popup_group';
+  default as MarkerGroup
+} from './marker_group';
 
 import {
-  default as PolygonPopupGroup
-} from './polygon_popup_group';
+  default as PolygonGroup
+} from './polygon_group';
 
-export {LinePopupGroup}
-export {MarkerPopupGroup}
-export {PolygonPopupGroup}
+export {LineGroup}
+export {MarkerGroup}
+export {PolygonGroup}

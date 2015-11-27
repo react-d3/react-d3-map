@@ -6,9 +6,7 @@ var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
 
-var PolygonPopupGroup = require('../../lib/index').PolygonPopupGroup;
-var LinePopupGroup = require('../../lib/index').LinePopupGroup;
-var MarkerPopupGroup = require('../../lib/index').MarkerPopupGroup;
+var PolygonGroup = require('../../lib/index').PolygonGroup;
 
 var css= require('./css/polygon.css');
 
@@ -43,7 +41,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <PolygonPopupGroup
+      <PolygonGroup
         key= {"polygon-test"}
         data= {data}
         popupContent= {popupContent}

@@ -11,17 +11,15 @@ import {
   Map
 } from 'immutable'
 
-import d3 from 'd3';
-
 import {
   Popup
 } from 'react-d3-map-core';
 
 import {
-  default as PolygonGroup
-} from './components/polygon_group'
+  default as MarkerCollection
+} from './components/marker_collection'
 
-export default class PolygonPopupGroup extends Component {
+export default class PointGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -48,11 +46,9 @@ export default class PolygonPopupGroup extends Component {
       var newPopup = showPopup.delete(id);
     } else {
       // add a popup
-      var position = projection.invert([d3.event.clientX, d3.event.clientY]);
-
       var newPopup = showPopup.set(id, Map({
-        xPopup: position[0],
-        yPopup: position[1],
+        xPopup: d.geometry.coordinates[0],
+        yPopup: d.geometry.coordinates[1],
         data: d
       }));
     }
@@ -63,7 +59,6 @@ export default class PolygonPopupGroup extends Component {
   }
 
   _onCloseClick(id) {
-
     var {
       showPopup
     } = this.state;
@@ -95,12 +90,13 @@ export default class PolygonPopupGroup extends Component {
       geoPath,
       projection,
       popupContent,
-      onMouseOut,
       onMouseOver,
-      polygonClass
+      onMouseOut,
+      markerClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
+
     var popup;
 
     if(showPopup.size && popupContent) {
@@ -118,7 +114,7 @@ export default class PolygonPopupGroup extends Component {
           <Popup
             key= {i}
             x= {point[0]}
-            y= {point[1] - 10}
+            y= {point[1] - 50}
             contentPopup={content}
             closeClick= {onCloseClick}
           />
@@ -129,13 +125,13 @@ export default class PolygonPopupGroup extends Component {
 
     return (
       <g>
-        <PolygonGroup
+        <MarkerCollection
           data= {data}
-          geoPath= {geoPath}
+          projection= {projection}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
-          polygonClass= {polygonClass}
+          markerClass= {markerClass}
           {...this.state}
         />
         {popup}

@@ -25,7 +25,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 
 var Map = require('react-d3-map').Map;
 
-var PolygonPopupGroup = require('react-d3-map').PolygonPopupGroup;
+var PolygonGroup = require('react-d3-map').PolygonGroup;
 
 (function() {
   var width = 1000;
@@ -57,7 +57,7 @@ var PolygonPopupGroup = require('react-d3-map').PolygonPopupGroup;
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <PolygonPopupGroup
+      <PolygonGroup
         key= {"polygon-test"}
         data= {data}
         popupContent= {popupContent}
@@ -84,7 +84,7 @@ var PolygonPopupGroup = require('react-d3-map').PolygonPopupGroup;
 
 var Map = require('react-d3-map').Map;
 
-var LinePopupGroup = require('react-d3-map').LinePopupGroup;
+var LineGroup = require('react-d3-map').LineGroup;
 
 
 (function() {
@@ -148,7 +148,7 @@ var LinePopupGroup = require('react-d3-map').LinePopupGroup;
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <LinePopupGroup
+      <LineGroup
         key= {"line-test"}
         data= {data}
         popupContent= {popupContent}
@@ -173,7 +173,7 @@ var LinePopupGroup = require('react-d3-map').LinePopupGroup;
 ```js
 
 var Map = require('react-d3-map').Map;
-var MarkerPopupGroup = require('react-d3-map').MarkerPopupGroup;
+var MarkerGroup = require('react-d3-map').MarkerGroup;
 
 
 // Example
@@ -208,7 +208,7 @@ var MarkerPopupGroup = require('react-d3-map').MarkerPopupGroup;
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <MarkerPopupGroup
+      <MarkerGroup
         key= {"polygon-test"}
         data= {data}
         popupContent= {popupContent}

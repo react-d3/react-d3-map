@@ -11,15 +11,17 @@ import {
   Map
 } from 'immutable'
 
+import d3 from 'd3';
+
 import {
   Popup
 } from 'react-d3-map-core';
 
 import {
-  default as MarkerGroup
-} from './components/marker_group'
+  default as LineCollection
+} from './components/mesh_collection'
 
-export default class PointPopupGroup extends Component {
+export default class LineGroup extends Component {
   constructor(props) {
     super(props);
 
@@ -46,9 +48,11 @@ export default class PointPopupGroup extends Component {
       var newPopup = showPopup.delete(id);
     } else {
       // add a popup
+      var position = projection.invert([d3.event.clientX, d3.event.clientY]);
+
       var newPopup = showPopup.set(id, Map({
-        xPopup: d.geometry.coordinates[0],
-        yPopup: d.geometry.coordinates[1],
+        xPopup: position[0],
+        yPopup: position[1],
         data: d
       }));
     }
@@ -59,6 +63,7 @@ export default class PointPopupGroup extends Component {
   }
 
   _onCloseClick(id) {
+
     var {
       showPopup
     } = this.state;
@@ -90,13 +95,12 @@ export default class PointPopupGroup extends Component {
       geoPath,
       projection,
       popupContent,
-      onMouseOver,
       onMouseOut,
-      markerClass
+      onMouseOver,
+      meshClass
     } = this.props;
 
     var onClick = this._onClick.bind(this)
-
     var popup;
 
     if(showPopup.size && popupContent) {
@@ -114,7 +118,7 @@ export default class PointPopupGroup extends Component {
           <Popup
             key= {i}
             x= {point[0]}
-            y= {point[1] - 50}
+            y= {point[1] - 10}
             contentPopup={content}
             closeClick= {onCloseClick}
           />
@@ -125,13 +129,13 @@ export default class PointPopupGroup extends Component {
 
     return (
       <g>
-        <MarkerGroup
+        <LineCollection
           data= {data}
-          projection= {projection}
+          geoPath= {geoPath}
           onClick= {onClick}
           onMouseOver= {onMouseOver}
           onMouseOut= {onMouseOut}
-          markerClass= {markerClass}
+          meshClass= {meshClass}
           {...this.state}
         />
         {popup}

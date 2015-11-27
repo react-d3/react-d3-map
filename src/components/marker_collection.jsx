@@ -10,7 +10,7 @@ import {
   Marker
 } from 'react-d3-map-core';
 
-export default class PolygonGroup extends Component {
+export default class MarkerCollection extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     if(nextProps.showPopup.size
       !== this.props.showPopup.size) {
