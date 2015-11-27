@@ -31,47 +31,38 @@ export default class PolygonCollection extends Component {
     } = this.props;
 
     var polygons;
+    var polygonData;
 
     if(data.type === 'FeatureCollection') {
-      var polygonData = [];
+      polygonData = [];
 
       // loop through features
       data.features.forEach(function(d) {
         polygonData.push(d);
       })
     }else if(data.type === 'Feature') {
-      var polygonData;
-
       polygonData = data;
     }
 
     if(polygonData) {
-      if(Array.isArray(polygonData)) {
-        polygons = polygonData.map((d, i) => {
-          return (
-            <Polygon
-              id= {'react-d3-map__polygon' + i}
-              key= {'react-d3-map__polygon' + i}
-              data= {d}
-              geoPath= {geoPath}
-              onClick= {onClick}
-              onMouseOver= {onMouseOver}
-              onMouseOut= {onMouseOut}
-              polygonClass= {polygonClass}
-            />
-          )
-        })
-      }else {
-        polygons = (<Polygon
-          id= {'react-d3-map__polygon'}
-          data= {polygonData}
-          geoPath= {geoPath}
-          onClick= {onClick}
-          onMouseOver= {onMouseOver}
-          onMouseOut= {onMouseOut}
-          polygonClass= {polygonClass}
-        />)
-      }
+      // if not array, make it as array
+      if(!Array.isArray(polygonData))
+        polygonData = [polygonData];
+
+      polygons = polygonData.map((d, i) => {
+        return (
+          <Polygon
+            id= {'react-d3-map__polygon' + i}
+            key= {'react-d3-map__polygon' + i}
+            data= {d}
+            geoPath= {geoPath}
+            onClick= {onClick}
+            onMouseOver= {onMouseOver}
+            onMouseOut= {onMouseOut}
+            polygonClass= {polygonClass}
+          />
+        )
+      })
     }
 
     return (
