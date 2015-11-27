@@ -5,7 +5,7 @@ var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
 
-var LinePopupGroup = require('../../lib/index').LinePopupGroup;
+var LineGroup = require('../../lib/index').LineGroup;
 
 var css= require('./css/polygon.css');
 
@@ -72,7 +72,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <LinePopupGroup
+      <LineGroup
         key= {"line-test"}
         data= {data}
         popupContent= {popupContent}

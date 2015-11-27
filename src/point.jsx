@@ -5,7 +5,7 @@ var ReactDOM = require('react-dom');
 var topojson = require('topojson');
 
 var Map = require('../../lib/index').Map;
-var MarkerPopupGroup = require('../../lib/index').MarkerPopupGroup;
+var MarkerGroup = require('../../lib/index').MarkerGroup;
 
 var css= require('./css/polygon.css');
 
@@ -41,7 +41,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <MarkerPopupGroup
+      <MarkerGroup
         key= {"polygon-test"}
         data= {data}
         popupContent= {popupContent}
