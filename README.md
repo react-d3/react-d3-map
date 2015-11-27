@@ -227,6 +227,31 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
 
 ![point](./example/img/point.png)
 
+## Svg in Map
+
+One of the most powerful part of `react-d3-map` is you can easy put all your svg tags and component inside your map, without any efforts
+
+```js
+ReactDOM.render(
+  <Map
+    width= {width}
+    height= {height}
+    scale= {scale}
+    scaleExtent= {scaleExtent}
+    center= {center}
+  >
+    // you can put any svg inside here, such as <rect>, <text> ...
+    <text
+      x= {width / 2}
+      y= {height/ 2}
+    >
+      HI, this is a text
+    </text>
+  </Map>
+, document.getElementById('blank-point')
+)
+```
+
 ## Install
 
 ```
