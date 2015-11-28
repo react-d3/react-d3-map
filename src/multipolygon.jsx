@@ -33,6 +33,25 @@ var css= require('./css/polygon.css');
   }
   var popupContent = function(d) { return 'hi, i am polygon'; }
 
+  var Container = React.createClass({
+    render: function() {
+      return (
+        <g>
+          <PolygonGroup
+            key= {"polygon-test"}
+            data= {data}
+            popupContent= {popupContent}
+            onClick= {onPolygonClick}
+            onCloseClick= {onPolygonCloseClick}
+            onMouseOver= {onPolygonMouseOver}
+            onMouseOut= {onPolygonMouseOut}
+            polygonClass= {"your-polygon-css-class"}
+          />
+        </g>
+      )
+    }
+  })
+
   ReactDOM.render(
     <Map
       width= {width}
@@ -41,16 +60,7 @@ var css= require('./css/polygon.css');
       scaleExtent= {scaleExtent}
       center= {center}
     >
-      <PolygonGroup
-        key= {"polygon-test"}
-        data= {data}
-        popupContent= {popupContent}
-        onClick= {onPolygonClick}
-        onCloseClick= {onPolygonCloseClick}
-        onMouseOver= {onPolygonMouseOver}
-        onMouseOut= {onPolygonMouseOut}
-        polygonClass= {"your-polygon-css-class"}
-      />
+      <Container/>
     </Map>
   , document.getElementById('blank-multipolygon')
   )
