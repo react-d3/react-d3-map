@@ -85,6 +85,10 @@ export default class Map extends Component {
       height,
       center,
       projection,
+      simplify,
+      simplifyArea,
+      clip,
+      bounds,
       data,
       popupContent
     } = this.props;
@@ -99,9 +103,12 @@ export default class Map extends Component {
       projection: projection,
       scale: scale / 2 / Math.PI,
       translate: zoomTranslate || translate,
-      center: center
+      center: center,
+      simplify: simplify,
+      simplifyArea: simplifyArea,
+      clip: clip,
+      bounds: bounds
     });
-
     var geo = geoPath(proj);
 
     this.projection = proj;
