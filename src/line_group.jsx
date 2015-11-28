@@ -30,6 +30,11 @@ export default class LineGroup extends Component {
     }
   }
 
+  static contextTypes = {
+    geoPath: React.PropTypes.func.isRequired,
+    projection: React.PropTypes.func.isRequired
+  }
+
   _onClick(that, d, id) {
 
     var {
@@ -37,9 +42,12 @@ export default class LineGroup extends Component {
     } = this.state;
 
     const {
-      projection,
       onClick
     } = this.props;
+
+    const {
+      projection
+    } = this.context;
 
     if(onClick) onClick(that, d, id);
 
@@ -92,13 +100,16 @@ export default class LineGroup extends Component {
 
     const {
       data,
-      geoPath,
-      projection,
       popupContent,
       onMouseOut,
       onMouseOver,
       meshClass
     } = this.props;
+
+    const {
+      geoPath,
+      projection
+    } = this.context;
 
     var onClick = this._onClick.bind(this)
     var popup;

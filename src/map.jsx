@@ -35,6 +35,18 @@ export default class Map extends Component {
 
   static defaultProps = CommonProps
 
+  static childContextTypes = {
+    geoPath: React.PropTypes.func.isRequired,
+    projection: React.PropTypes.func.isRequired
+  }
+
+  getChildContext() {
+    return {
+      geoPath: this.geoPath,
+      projection: this.projection
+    };
+  }
+
   onZoom(zoomScale, zoomTranslate) {
     var times = this.state.times;
 
@@ -91,6 +103,9 @@ export default class Map extends Component {
     });
 
     var geo = geoPath(proj);
+
+    this.projection = proj;
+    this.geoPath = geo;
 
     var tiles = tileFunc({
       scale: proj.scale() * 2 * Math.PI,
