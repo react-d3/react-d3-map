@@ -6,16 +6,16 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 
 #### Multipolygon and Polygon
 
-- http://map.reactd3.org/test-multipolygon.html
-- http://map.reactd3.org/test-polygon.html
+- http://interactive.reactd3.org/test-multipolygon.html
+- http://interactive.reactd3.org/test-polygon.html
 
 #### Markers and Points
 
-- http://map.reactd3.org/test-point.html
+- http://interactive.reactd3.org/test-point.html
 
 #### LineString and MultiLineString
 
-- http://map.reactd3.org/test-line.html
+- http://interactive.reactd3.org/test-line.html
 
 ## Examples
 
