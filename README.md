@@ -251,9 +251,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var topojson = require('topojson');
 
-var MapResponsive = require('../../lib/index').MapResponsive;
+var MapResponsive = require('react-d3-map').MapResponsive;
 
-var ResponsivePolygonGroup = require('../../lib/index').ResponsivePolygonGroup;
+var ResponsivePolygonGroup = require('react-d3-map').ResponsivePolygonGroup;
 
 var css= require('./css/polygon.css');
 var mobile_css = require('./css/mobile.css');
