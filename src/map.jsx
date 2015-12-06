@@ -126,16 +126,6 @@ export default class Map extends Component {
       width: width
     }
 
-    var children = React.Children.map(
-      this.props.children,
-      (child) => {
-        return React.cloneElement(child, {
-          projection: proj,
-          geoPath: geo
-        })
-      }
-    );
-
     return (
       <div style= {styleContainer}>
         <Chart
@@ -152,7 +142,7 @@ export default class Map extends Component {
             data= {data}
             {...this.state}
           >
-            {children}
+            {this.props.children}
           </Vector>
         </Chart>
         <ZoomControl

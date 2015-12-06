@@ -2,6 +2,13 @@
 
 react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG components to replace layers!!!
 
+
+## Install
+
+```
+npm install react-d3-map
+```
+
 ## LIVE DEMO
 
 #### Multipolygon and Polygon
@@ -250,12 +257,6 @@ ReactDOM.render(
   </Map>
 , document.getElementById('blank-point')
 )
-```
-
-## Install
-
-```
-npm install react-d3-map
 ```
 
 
