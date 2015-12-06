@@ -33,6 +33,7 @@
     "d3": "^3.5.6",
     "immutable": "^3.7.5",
     "react-d3-map-core": "^0.13.1",
+    "react-d3-map-mobile": "^0.1.0",
     "react-faux-dom": "^2.1.0"
   },
   "jest": {

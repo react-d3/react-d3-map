@@ -16,6 +16,7 @@ module.exports = [{
   entry: {
     container: './example/src/container.jsx',
     multipolygon: './example/src/multipolygon.jsx',
+    mapresponsive: './example/src/mapresponsive.jsx',
     point: './example/src/point.jsx',
     line: './example/src/line.jsx',
     test: './example/src/test.jsx'

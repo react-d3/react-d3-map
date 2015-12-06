@@ -1,12 +1,12 @@
 .polygon {
-  stroke: red;
-  stroke-width: 3;
-  fill: none;
+  fill: blue !important;
+  opacity: .4 !important;
   pointer-events: all;
 }
 
 .mesh {
-  stroke: red !important;
+  stroke: blue !important;
   stroke-width: 3 !important;
+  opacity: .4 !important;
   pointer-events: all;
 }

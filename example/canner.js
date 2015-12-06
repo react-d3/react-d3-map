@@ -14,6 +14,10 @@ examples = [
   {
     "link": "line",
     "title": "Line"
+  },
+  {
+    "link": "mapresponsive",
+    "title": "MapResponsive"
   }
 ];
 
