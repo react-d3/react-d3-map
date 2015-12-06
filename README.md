@@ -4,7 +4,7 @@ react-d3 interactive map, just like Leaflet!!! But BYE BYE layers!!!! We use SVG
 
 And we also support responsive map!!!
 
-![responsive](./example/img/responsive.gif)
+<img src="./example/img/responsive.gif" width="500"/>
 
 see in [responsive](#responsive-map)
 
@@ -241,6 +241,8 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
 ![point](./example/img/point.png)
 
 ## Responsive map
+
+Using responsive maps you have to use `<MapResponsive>`
 
 ```js
 "use strict";
