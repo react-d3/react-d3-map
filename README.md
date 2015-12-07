@@ -242,7 +242,9 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
 
 ## Responsive map
 
-Using responsive maps you have to use `<MapResponsive>`
+Using responsive maps you have to use `<MapResponsive>`.
+
+If you only need mobile version in your code you can find it [here](https://github.com/react-d3/react-d3-map-mobile)
 
 ```js
 "use strict";
