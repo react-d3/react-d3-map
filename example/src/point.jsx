@@ -19,17 +19,19 @@ var css= require('./css/polygon.css');
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
-  var onMarkerMouseOut= function(dom , d, i) {
-    console.log('out')
+  var onMarkerMouseOut= function(e, dom, d, i) {
+    e.hidePopup();
   }
-  var onMarkerMouseOver= function(dom, d, i) {
-    console.log('over')
+  var onMarkerMouseOver= function(e, dom, d, i) {
+    e.showPopup();
   }
-  var onMarkerClick= function(dom, d, i) {
+  var onMarkerClick= function(e, dom, d, id) {
     console.log('click')
+    // e.showPopup();
   }
-  var onMarkerCloseClick= function(id) {
+  var onMarkerCloseClick= function(e, id) {
     console.log('close click')
+    // e.hidePopup();
   }
 
 

@@ -19,18 +19,19 @@ var css= require('./css/polygon.css');
   var center = [-100.95, 40.7];
   var data = require('json!../data/states.json');
 
-  var onPolygonMouseOut= function(dom , d, i) {
+  var onPolygonMouseOut= function(e, dom , d, i) {
     console.log('out')
+    e.hidePopup();
   }
-  var onPolygonMouseOver= function(dom, d, i) {
+  var onPolygonMouseOver= function(e, dom, d, i) {
     console.log('over')
+    e.showPopup();
   }
-  var onPolygonClick= function(dom, d, i) {
-    console.log('click')
+  var onPolygonClick= function(e, dom, d, i) {
+    // e.showPopup();
   }
-  var onPolygonCloseClick= function(id) {
-    console.log('close click')
-    console.log(id)
+  var onPolygonCloseClick= function(e, id) {
+    // e.hidePopup();
   }
   var popupContent = function(d) { return 'hi, i am polygon'; }
 

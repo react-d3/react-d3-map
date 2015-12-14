@@ -10,8 +10,7 @@ import {
   Chart,
   projection as projectionFunc,
   geoPath,
-  tileFunc,
-  ZoomControl
+  tileFunc
 } from 'react-d3-map-core';
 
 import {
@@ -26,10 +25,13 @@ export default class Map extends Component {
   constructor(props) {
     super(props);
 
+    const {
+      scale
+    } = this.props;
+
     this.state = {
       zoomTranslate: null,
-      scale: this.props.scale,
-      times: 1
+      scaleSet: scale
     };
   }
 
@@ -47,36 +49,16 @@ export default class Map extends Component {
     };
   }
 
-  onZoom(zoomScale, zoomTranslate) {
-    var times = this.state.times;
-
+  onZoom(onZoomScale, onZoomTranslate) {
     this.setState({
-      scale: zoomScale * times,
-      zoomTranslate: zoomTranslate
-    })
-  }
-
-  zoomIn() {
-    var times = this.state.times;
-
-    this.setState({
-      times: times * 2,
-      scale: this.state.scale * 2
-    })
-  }
-
-  zoomOut() {
-    var times = this.state.times;
-
-    this.setState({
-      times: times / 2,
-      scale: this.state.scale / 2
+      scaleSet: onZoomScale,
+      zoomTranslate: onZoomTranslate
     })
   }
 
   render() {
     const {
-      scale,
+      scaleSet,
       zoomTranslate
     } = this.state;
 
@@ -90,18 +72,20 @@ export default class Map extends Component {
       clip,
       bounds,
       data,
-      popupContent
+      popupContent,
+      scale
     } = this.props;
 
+    var zoomScale = this.props.zoomScale || scale;
+    var times = zoomScale / scale;
+
     var onZoom = this.onZoom.bind(this);
-    var zoomIn = this.zoomIn.bind(this);
-    var zoomOut = this.zoomOut.bind(this);
 
     var translate = [width / 2, height / 2] || this.props.translate;
 
     var proj = projectionFunc({
       projection: projection,
-      scale: scale / 2 / Math.PI,
+      scale: (scaleSet * times) / 2 / Math.PI,
       translate: zoomTranslate || translate,
       center: center,
       simplify: simplify,
@@ -109,6 +93,7 @@ export default class Map extends Component {
       clip: clip,
       bounds: bounds
     });
+
     var geo = geoPath(proj);
 
     this.projection = proj;
@@ -120,36 +105,24 @@ export default class Map extends Component {
       size: ([width, height])
     });
 
-    var styleContainer = {
-      position: 'relative',
-      backgroundColor: '#EEE',
-      width: width
-    }
-
     return (
-      <div style= {styleContainer}>
-        <Chart
+      <Chart
+        {...this.props}
+        width= {width}
+        height= {height}
+        projection = {proj}
+        onZoom= {onZoom}
+        center= {center}
+      >
+        <Vector
           {...this.props}
-          width= {width}
-          height= {height}
-          projection = {proj}
-          onZoom= {onZoom}
-          center= {center}
+          {...this.state}
+          tiles= {tiles}
+          data= {data}
         >
-          <Vector
-            {...this.props}
-            tiles= {tiles}
-            data= {data}
-            {...this.state}
-          >
-            {this.props.children}
-          </Vector>
-        </Chart>
-        <ZoomControl
-          zoomInClick= {zoomIn}
-          zoomOutClick= {zoomOut}
-        />
-      </div>
+          {this.props.children}
+        </Vector>
+      </Chart>
     )
 
   }

@@ -36,10 +36,6 @@ npm install react-d3-map
 
 ```js
 
-var Map = require('react-d3-map').Map;
-
-var PolygonGroup = require('react-d3-map').PolygonGroup;
-
 (function() {
   var width = 1000;
   var height = 800;
@@ -47,20 +43,41 @@ var PolygonGroup = require('react-d3-map').PolygonGroup;
   var scaleExtent = [1 << 10, 1 << 14]
   var center = [-100.95, 40.7];
   var data = require('json!../data/states.json');
-  var onPolygonMouseOut= function(dom , d, i) {
+
+  var onPolygonMouseOut= function(e, dom , d, i) {
     console.log('out')
+    e.hidePopup();
   }
-  var onPolygonMouseOver= function(dom, d, i) {
+  var onPolygonMouseOver= function(e, dom, d, i) {
     console.log('over')
+    e.showPopup();
   }
-  var onPolygonClick= function(dom, d, i) {
-    console.log('click')
+  var onPolygonClick= function(e, dom, d, i) {
+    // e.showPopup();
   }
-  var onPolygonCloseClick= function(id) {
-    console.log('close click')
-    console.log(id)
+  var onPolygonCloseClick= function(e, id) {
+    // e.hidePopup();
   }
   var popupContent = function(d) { return 'hi, i am polygon'; }
+
+  var Container = React.createClass({
+    render: function() {
+      return (
+        <g>
+          <PolygonGroup
+            key= {"polygon-test"}
+            data= {data}
+            popupContent= {popupContent}
+            onClick= {onPolygonClick}
+            onCloseClick= {onPolygonCloseClick}
+            onMouseOver= {onPolygonMouseOver}
+            onMouseOut= {onPolygonMouseOut}
+            polygonClass= {"your-polygon-css-class"}
+          />
+        </g>
+      )
+    }
+  })
 
   ReactDOM.render(
     <Map
@@ -69,17 +86,10 @@ var PolygonGroup = require('react-d3-map').PolygonGroup;
       scale= {scale}
       scaleExtent= {scaleExtent}
       center= {center}
+      clip={true}
+      bounds={[[0, 0], [width, height]]}
     >
-      <PolygonGroup
-        key= {"polygon-test"}
-        data= {data}
-        popupContent= {popupContent}
-        onClick= {onPolygonClick}
-        onCloseClick= {onPolygonCloseClick}
-        onMouseOver= {onPolygonMouseOver}
-        onMouseOut= {onPolygonMouseOut}
-        polygonClass= {"your-polygon-css-class"}
-      />
+      <Container/>
     </Map>
   , document.getElementById('blank-multipolygon')
   )
@@ -139,16 +149,19 @@ var LineGroup = require('react-d3-map').LineGroup;
           }
       }
 
-  var onLineMouseOut= function(dom , d, i) {
+  var onLineMouseOut= function(e, dom , d, i) {
+    e.hidePopup();
     console.log('out')
+
   }
-  var onLineMouseOver= function(dom, d, i) {
+  var onLineMouseOver= function(e, dom, d, i) {
+    e.showPopup();
     console.log('over')
   }
-  var onLineClick= function(dom, d, i) {
+  var onLineClick= function(e, dom, d, i) {
     console.log('click')
   }
-  var onLineCloseClick= function(id) {
+  var onLineCloseClick= function(e, id) {
     console.log('close click')
   }
 
@@ -199,16 +212,18 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
-  var onMarkerMouseOut= function(dom , d, i) {
+  var onMarkerMouseOut= function(e, dom , d, i) {
     console.log('out')
   }
-  var onMarkerMouseOver= function(dom, d, i) {
+  var onMarkerMouseOver= function(e, dom, d, i) {
     console.log('over')
   }
-  var onMarkerClick= function(dom, d, i) {
+  var onMarkerClick= function(e, dom, d, i) {
+    e.showPopup();
     console.log('click')
   }
-  var onMarkerCloseClick= function(id) {
+  var onMarkerCloseClick= function(e, id) {
+    e.hidePopup();
     console.log('close click')
   }
 
@@ -310,6 +325,87 @@ var mobile_css = require('./css/mobile.css');
   ReactDOM.render(
     <Container/>
   , document.getElementById('blank-mapresponsive')
+  )
+
+})()
+
+```
+
+## With ZoomControl
+
+You have to add your ZoomControl panel by default using `ZoomControl` component in `react-d3-map-core`.  And send your `zoomScale` props in `Map` component, to achieve the zoomIn and zoomOut effect.
+
+```js
+"use strict";
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var topojson = require('topojson');
+
+var Map = require('react-d3-map').Map;
+var ZoomControl = require('react-d3-map-core').ZoomControl;
+
+var css= require('./css/polygon.css');
+
+// Example
+(function() {
+  var width = 1000;
+  var height = 800;
+  var scale = (1 << 18);
+  var center = [-73.95, 40.7];
+  var data = {geometry: {coordinates: [[[-74.0479, 40.8820], [-73.9067, 40.8820], [-73.9067, 40.6829], [-74.0479, 40.6829], [-74.0479, 40.8820]]], type: "Polygon"}, id: 999999, properties:{"text": "hi, this is a polygon!"}, type: "Feature"};
+  var popupContent = function(d) { return d.properties.text; }
+
+  var Container = React.createClass({
+    getInitialState: function() {
+      return {
+        scale: scale
+      }
+    },
+    zoomOut: function() {
+      this.setState({
+        scale: this.state.scale / 2
+      })
+    },
+    zoomIn: function() {
+      this.setState({
+        scale: this.state.scale * 2
+      })
+    },
+    render: function() {
+
+      var zoomIn = this.zoomIn;
+      var zoomOut = this.zoomOut;
+
+      var styleContainer = {
+        position: 'relative',
+        backgroundColor: '#EEE',
+        width: width
+      }
+
+      return (
+        <div style= {styleContainer}>
+          <Map
+            width= {width}
+            height= {height}
+            scale= {scale}
+            zoomScale= {this.state.scale}
+            center= {center}
+            data= {data}
+            popupContent= {popupContent}
+          />
+          <ZoomControl
+            zoomInClick= {zoomIn}
+            zoomOutClick= {zoomOut}
+          />
+        </div>
+      )
+    }
+  })
+
+  ReactDOM.render(
+    <Container/>
+  , document.getElementById('blank-container')
   )
 
 })()

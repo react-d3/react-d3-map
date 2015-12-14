@@ -33,21 +33,56 @@ export default class PointGroup extends Component {
     projection: React.PropTypes.func.isRequired
   }
 
-  _onClick(that, d, id) {
-
-    var {
-      showPopup
-    } = this.state;
-
+  _onClick(dom, d, id) {
     const {
       onClick
     } = this.props;
 
-    const {
-      projection
-    } = this.context;
+    this.id = id;
+    this.d = d;
 
-    if(onClick) onClick(that, d, id);
+    if(onClick) onClick(this, dom, d, id);
+  }
+
+  _onMouseOut(dom, d, id) {
+    const {
+      onMouseOut
+    } = this.props;
+
+    this.id = id;
+    this.d = d;
+
+    if(onMouseOut) onMouseOut(this, dom, d, id);
+  }
+
+  _onMouseOver(dom, d, id) {
+    const {
+      onMouseOver
+    } = this.props;
+
+    this.id = id;
+    this.d = d;
+
+    if(onMouseOver) onMouseOver(this, dom, d, id);
+  }
+
+  _onCloseClick(id) {
+    const {
+      onCloseClick
+    } = this.props;
+
+    this.id = id;
+
+    if(onCloseClick) onCloseClick(this, id);
+  }
+
+  showPopup() {
+    var {
+      showPopup
+    } = this.state;
+
+    var id = this.id;
+    var d = this.d;
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
@@ -66,16 +101,12 @@ export default class PointGroup extends Component {
     })
   }
 
-  _onCloseClick(id) {
+  hidePopup() {
     var {
       showPopup
     } = this.state;
 
-    const {
-      onCloseClick
-    } = this.props;
-
-    if(onCloseClick) onCloseClick(id);
+    var id = this.id;
 
     if(showPopup.keySeq().toArray().indexOf(id) !== -1) {
       // hide popup
@@ -96,8 +127,6 @@ export default class PointGroup extends Component {
     const {
       data,
       popupContent,
-      onMouseOver,
-      onMouseOut,
       markerClass
     } = this.props;
 
@@ -106,8 +135,9 @@ export default class PointGroup extends Component {
       projection
     } = this.context;
 
-    var onClick = this._onClick.bind(this)
-
+    var onClick = this._onClick.bind(this);
+    var onMouseOver = this._onMouseOver.bind(this);
+    var onMouseOut = this._onMouseOut.bind(this);
     var popup;
 
     if(showPopup.size && popupContent) {
@@ -131,7 +161,6 @@ export default class PointGroup extends Component {
           />
         )
       })
-
     }
 
     return (

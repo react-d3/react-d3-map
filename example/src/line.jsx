@@ -50,17 +50,21 @@ var css= require('./css/polygon.css');
           }
       }
 
-  var onLineMouseOut= function(dom , d, i) {
+  var onLineMouseOut= function(e, dom , d, i) {
     console.log('out')
+    e.hidePopup();
   }
-  var onLineMouseOver= function(dom, d, i) {
+  var onLineMouseOver= function(e, dom, d, i) {
     console.log('over')
+    e.showPopup();
   }
-  var onLineClick= function(dom, d, i) {
+  var onLineClick= function(e, dom, d, i) {
     console.log('click')
+    // e.showPopup();
   }
-  var onLineCloseClick= function(id) {
+  var onLineCloseClick= function(e, id) {
     console.log('close click')
+    // e.hidePopup();
   }
 
 
