@@ -149,16 +149,16 @@ var LineGroup = require('react-d3-map').LineGroup;
           }
       }
 
-  var onLineMouseOut= function(component, dom , d, i) {
+  var onLineMouseOut= function(component , d, i) {
     component.hidePopup();
     console.log('out')
 
   }
-  var onLineMouseOver= function(component, dom, d, i) {
+  var onLineMouseOver= function(component, d, i) {
     component.showPopup();
     console.log('over')
   }
-  var onLineClick= function(component, dom, d, i) {
+  var onLineClick= function(component, d, i) {
     console.log('click')
   }
   var onLineCloseClick= function(componentcomponent, id) {
@@ -212,13 +212,13 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
-  var onMarkerMouseOut= function(component, dom , d, i) {
+  var onMarkerMouseOut= function(component, d, i) {
     console.log('out')
   }
-  var onMarkerMouseOver= function(component, dom, d, i) {
+  var onMarkerMouseOver= function(component, d, i) {
     console.log('over')
   }
-  var onMarkerClick= function(component, dom, d, i) {
+  var onMarkerClick= function(component, d, i) {
     component.showPopup();
     console.log('click')
   }
