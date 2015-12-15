@@ -40,8 +40,9 @@ export default class PointGroup extends Component {
 
     this.id = id;
     this.d = d;
+    this.getDOM = dom;
 
-    if(onClick) onClick(this, dom, d, id);
+    if(onClick) onClick(this, d, id);
   }
 
   _onMouseOut(dom, d, id) {
@@ -51,8 +52,9 @@ export default class PointGroup extends Component {
 
     this.id = id;
     this.d = d;
+    this.getDOM = dom;
 
-    if(onMouseOut) onMouseOut(this, dom, d, id);
+    if(onMouseOut) onMouseOut(this, d, id);
   }
 
   _onMouseOver(dom, d, id) {
@@ -62,8 +64,9 @@ export default class PointGroup extends Component {
 
     this.id = id;
     this.d = d;
+    this.getDOM = dom;
 
-    if(onMouseOver) onMouseOver(this, dom, d, id);
+    if(onMouseOver) onMouseOver(this, d, id);
   }
 
   _onCloseClick(id) {

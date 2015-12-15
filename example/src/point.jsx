@@ -19,19 +19,22 @@ var css= require('./css/polygon.css');
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
-  var onMarkerMouseOut= function(e, dom, d, i) {
-    e.hidePopup();
+  var onMarkerMouseOut= function(component, d, i) {
+    component.hidePopup();
+    // to get the dom
+    var dom = ReactDOM.findDOMNode(component.getDOM);
   }
-  var onMarkerMouseOver= function(e, dom, d, i) {
-    e.showPopup();
+  var onMarkerMouseOver= function(component, d, i) {
+    component.showPopup();
+    // console.log(component.getDOM)
   }
-  var onMarkerClick= function(e, dom, d, id) {
+  var onMarkerClick= function(component, d, id) {
     console.log('click')
-    // e.showPopup();
+    // component.showPopup();
   }
-  var onMarkerCloseClick= function(e, id) {
+  var onMarkerCloseClick= function(component, id) {
     console.log('close click')
-    // e.hidePopup();
+    // component.hidePopup();
   }
 
 

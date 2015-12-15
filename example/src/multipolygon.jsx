@@ -19,15 +19,15 @@ var css= require('./css/polygon.css');
   var center = [-100.95, 40.7];
   var data = require('json!../data/states.json');
 
-  var onPolygonMouseOut= function(e, dom , d, i) {
+  var onPolygonMouseOut= function(e, d, i) {
     console.log('out')
     e.hidePopup();
   }
-  var onPolygonMouseOver= function(e, dom, d, i) {
+  var onPolygonMouseOver= function(e, d, i) {
     console.log('over')
     e.showPopup();
   }
-  var onPolygonClick= function(e, dom, d, i) {
+  var onPolygonClick= function(e, d, i) {
     // e.showPopup();
   }
   var onPolygonCloseClick= function(e, id) {

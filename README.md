@@ -44,19 +44,19 @@ npm install react-d3-map
   var center = [-100.95, 40.7];
   var data = require('json!../data/states.json');
 
-  var onPolygonMouseOut= function(e, dom , d, i) {
+  var onPolygonMouseOut= function(component, d, i) {
     console.log('out')
-    e.hidePopup();
+    component.hidePopup();
   }
-  var onPolygonMouseOver= function(e, dom, d, i) {
+  var onPolygonMouseOver= function(component, d, i) {
     console.log('over')
-    e.showPopup();
+    component.showPopup();
   }
-  var onPolygonClick= function(e, dom, d, i) {
-    // e.showPopup();
+  var onPolygonClick= function(component, d, i) {
+    // component.showPopup();
   }
-  var onPolygonCloseClick= function(e, id) {
-    // e.hidePopup();
+  var onPolygonCloseClick= function(component, id) {
+    // component.hidePopup();
   }
   var popupContent = function(d) { return 'hi, i am polygon'; }
 
@@ -149,19 +149,19 @@ var LineGroup = require('react-d3-map').LineGroup;
           }
       }
 
-  var onLineMouseOut= function(e, dom , d, i) {
-    e.hidePopup();
+  var onLineMouseOut= function(component, dom , d, i) {
+    component.hidePopup();
     console.log('out')
 
   }
-  var onLineMouseOver= function(e, dom, d, i) {
-    e.showPopup();
+  var onLineMouseOver= function(component, dom, d, i) {
+    component.showPopup();
     console.log('over')
   }
-  var onLineClick= function(e, dom, d, i) {
+  var onLineClick= function(component, dom, d, i) {
     console.log('click')
   }
-  var onLineCloseClick= function(e, id) {
+  var onLineCloseClick= function(componentcomponent, id) {
     console.log('close click')
   }
 
@@ -212,18 +212,18 @@ var MarkerGroup = require('react-d3-map').MarkerGroup;
   var uk = require('json!../data/uk.json');
   var data = topojson.feature(uk, uk.objects.places);
   var popupContent = function(d) { return d.properties.name; }
-  var onMarkerMouseOut= function(e, dom , d, i) {
+  var onMarkerMouseOut= function(component, dom , d, i) {
     console.log('out')
   }
-  var onMarkerMouseOver= function(e, dom, d, i) {
+  var onMarkerMouseOver= function(component, dom, d, i) {
     console.log('over')
   }
-  var onMarkerClick= function(e, dom, d, i) {
-    e.showPopup();
+  var onMarkerClick= function(component, dom, d, i) {
+    component.showPopup();
     console.log('click')
   }
-  var onMarkerCloseClick= function(e, id) {
-    e.hidePopup();
+  var onMarkerCloseClick= function(component, id) {
+    component.hidePopup();
     console.log('close click')
   }
 
@@ -292,7 +292,7 @@ var mobile_css = require('./css/mobile.css');
       this.setState({width: window.innerWidth- 50, height: window.innerHeight - 50});
     },
     componentWillMount: function() {
-        this.updateDimensions();
+      this.updateDimensions();
     },
     componentDidMount: function() {
       window.addEventListener("resize", this.updateDimensions);
