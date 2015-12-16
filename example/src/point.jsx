@@ -22,7 +22,7 @@ var css= require('./css/polygon.css');
   var onMarkerMouseOut= function(component, d, i) {
     component.hidePopup();
     // to get the dom
-    var dom = ReactDOM.findDOMNode(component.getDOM);
+    var dom = ReactDOM.findDOMNode(component.domRef);
   }
   var onMarkerMouseOver= function(component, d, i) {
     component.showPopup();
