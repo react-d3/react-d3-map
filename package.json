@@ -1,6 +1,6 @@
 {
   "name": "react-d3-map",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "react-d3 interactive map",
   "main": "./lib/index.js",
   "scripts": {
