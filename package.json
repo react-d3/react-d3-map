@@ -1,6 +1,6 @@
 {
   "name": "react-d3-map",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "react-d3 interactive map",
   "main": "./lib/index.js",
   "scripts": {
@@ -33,7 +33,6 @@
     "d3": "^3.5.6",
     "immutable": "^3.7.5",
     "react-d3-map-core": "^0.13.5",
-    "react-d3-map-mobile": "^0.1.0",
     "react-faux-dom": "^2.1.0"
   },
   "jest": {
